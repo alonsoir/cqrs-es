@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/sopra-builder.iml" filepath="$PROJECT_DIR$/sopra-builder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sopra-controller/sopra-controller.iml" filepath="$PROJECT_DIR$/sopra-controller/sopra-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sopra-repositories/sopra-repositories.iml" filepath="$PROJECT_DIR$/sopra-repositories/sopra-repositories.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sopra-services/sopra-services.iml" filepath="$PROJECT_DIR$/sopra-services/sopra-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sopra-spring/sopra-spring.iml" filepath="$PROJECT_DIR$/sopra-spring/sopra-spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sopra-vo/sopra-vo.iml" filepath="$PROJECT_DIR$/sopra-vo/sopra-vo.iml" />
+    </modules>
+  </component>
+</project>

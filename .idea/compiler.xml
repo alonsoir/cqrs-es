@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sopra-services" />
+        <module name="sopra-controller" />
+        <module name="sopra-spring" />
+        <module name="sopra-repositories" />
+        <module name="sopra-vo" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sopra-builder" target="1.8" />
+      <module name="sopra-controller" target="1.8" />
+      <module name="sopra-repositories" target="1.8" />
+      <module name="sopra-services" target="1.8" />
+      <module name="sopra-spring" target="1.8" />
+      <module name="sopra-vo" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="sopra-controller" options="-parameters" />
+      <module name="sopra-repositories" options="-parameters" />
+      <module name="sopra-services" options="-parameters" />
+      <module name="sopra-spring" options="-parameters" />
+      <module name="sopra-vo" options="-parameters" />
+    </option>
+  </component>
+</project>
