@@ -11,6 +11,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="sopra-repositories" />
     <orderEntry type="module" module-name="sopra-vo" />
+    <orderEntry type="library" name="Maven: io.vavr:vavr:0.9.2" level="project" />
+    <orderEntry type="library" name="Maven: io.vavr:vavr-match:0.9.2" level="project" />
     <orderEntry type="library" name="Maven: org.mariadb.jdbc:mariadb-java-client:2.4.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.2.2.RELEASE" level="project" />
