@@ -14,8 +14,7 @@ import java.util.List;
 public class ServiceHandlerImpl implements ServiceCommandHandler, ServiceQueryHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceHandlerImpl.class);
-
-
+    
     private final ServiceCommandHandler serviceCommandHandler;
     private final ServiceQueryHandler serviceQueryHandler;
 

@@ -52,6 +52,8 @@ public class ServiceQueryHandlerImpl implements ServiceQueryHandler, ServiceQuer
         // habrá que hacer una transformacion seguro para guardar en la base de datos de lecturas.
         // por comodidad voy a hacer que sean el mismo.
         UserData recoveredFromEventStore = serviceQueryEventStore.poll();
+        updateQueryStatus(QueryStatus.ConsumedFromTopic);
+
         LOGGER.info("recoveredFromEventStore: " + recoveredFromEventStore.toString());
         UserData savedPojoIntoQueryCluster = saveOrUpdateIntoDB(recoveredFromEventStore);
         LOGGER.info("savedPojoIntoQueryCluster: " + savedPojoIntoQueryCluster.toString());

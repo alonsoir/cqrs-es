@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers:
+            - 0.0.0.0:9092
+      bindings:
+        input:
+          consumer:
+            autoCommitOffset: false
+          binder: kafka
+          destination: test-greetings-in
+          content-type: text/plain
+          group: input-group-1
+        output:
+          binder: kafka
+          destination: test-greetings-out
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 12
+          group: output-group-1
+          content-type: application/json
