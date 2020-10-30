@@ -30,12 +30,14 @@ public class ServiceCommandImpl extends ServiceCommandObservable implements Serv
     }
 
     @Override
-    public UserData saveOrUpdateIntoDB(UserData user) {
+    public boolean saveOrUpdateIntoDB(UserData user) {
         UserData userSaved = userDataRepository.save(user);
         LOGGER.info("userSaved: " + userSaved.toString());
+        boolean isPresent = userDataRepository.existsById(user.getIdUserData());
+        LOGGER.info("isPresent?: " + !isPresent);
         currentStatus = CommandStatus.SavedIntoDB;
         notifyObservers(currentStatus);
-        return  userSaved;
+        return  isPresent;
     }
 
     @Override

@@ -1,15 +1,17 @@
 package es.sopra.prototype.services.impl;
 
 import es.sopra.prototype.services.bd.ServiceCommand;
-import es.sopra.prototype.services.eventstore.ServiceCommandEventStore;
 import es.sopra.prototype.services.handler.ServiceCommandHandler;
 import es.sopra.prototype.services.observer.ServiceCommandObserver;
 import es.sopra.prototype.services.status.CommandStatus;
 import es.sopra.prototype.vo.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sopra.prototype.soprakafka.model.CommandMessage;
+import sopra.prototype.soprakafka.service.CommandServiceEventStore;
+
+import java.time.LocalDate;
 
 @Service
 public class ServiceCommandHandlerImpl implements ServiceCommandHandler, ServiceCommandObserver {
@@ -17,21 +19,30 @@ public class ServiceCommandHandlerImpl implements ServiceCommandHandler, Service
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCommandHandlerImpl.class);
 
     private final ServiceCommand serviceCommand;
-    private final ServiceCommandEventStore serviceCommandEventStore;
+    private final CommandServiceEventStore eventStore;
 
-    @Autowired
-    public ServiceCommandHandlerImpl(ServiceCommand serviceCommand,ServiceCommandEventStore serviceCommandEventStore) {
+    public ServiceCommandHandlerImpl(ServiceCommand serviceCommand, CommandServiceEventStore eventStore) {
+
         this.serviceCommand = serviceCommand;
-        this.serviceCommandEventStore = serviceCommandEventStore;
+        this.eventStore = eventStore;
     }
 
+
     @Override
-    public UserData saveOrUpdateIntoDB(UserData user) {
+    public boolean saveOrUpdateIntoDB(UserData user) {
         LOGGER.info("ServiceCommandHandlerImpl.saveOrUpdateIntoDB");
-        UserData saved = serviceCommand.saveOrUpdateIntoDB(user);
+        boolean saved = serviceCommand.saveOrUpdateIntoDB(user);
         // ojito con esto, la agregacion que pushearas al topic se parecerá al entity guardado, pero no será igual.
         // habrá que hacer una conversion, o creacion, ya veremos
-        UserData agregationCreationPushedToEventStore = pushIntoEventStore(saved);
+        CommandMessage message = CommandMessage.builder()
+                .timestamp(System.currentTimeMillis())
+                .message("User " + user.getName() + " was created at " + LocalDate.now())
+                .dateRegister(user.getDateRegister())
+                .name(user.getName())
+                .build();
+
+
+        boolean agregationCreationPushedToEventStore= pushIntoEventStore(message);
         return agregationCreationPushedToEventStore;
     }
 
@@ -46,13 +57,11 @@ public class ServiceCommandHandlerImpl implements ServiceCommandHandler, Service
         return deleted;
     }
 
-    @Override
-    public UserData pushIntoEventStore(UserData data) {
+    public  boolean pushIntoEventStore(CommandMessage command) {
         LOGGER.info("ServiceCommandHandlerImpl.pushIntoEventStore");
-        return serviceCommandEventStore.pushIntoEventStore(data);
+        return eventStore.sendCommandMessage(command);
     }
 
-    @Override
     public void updateCommandStatus(CommandStatus status) {
         // Este método comprueba la actualizacion de estado. Podríamos guardar el estado, etc...
         LOGGER.info("ServiceCommandHandlerImpl updated status: " + status.getDescription());

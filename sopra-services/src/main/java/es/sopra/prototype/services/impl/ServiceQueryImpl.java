@@ -39,10 +39,12 @@ public class ServiceQueryImpl extends ServiceQueryObservable implements ServiceQ
     }
 
     @Override
-    public UserData saveOrUpdateIntoDB(UserData user) {
+    public boolean saveOrUpdateIntoDB(UserData user) {
         UserData userSaved = userDataRepository.save(user);
         LOGGER.info("userSaved: " + userSaved.toString());
+        boolean isPresent = userDataRepository.existsById(user.getIdUserData());
+        LOGGER.info("isPresent?: " + !isPresent);
         currentStatus = QueryStatus.SavedIntoDB;
-        return  userSaved;
+        return  isPresent;
     }
 }

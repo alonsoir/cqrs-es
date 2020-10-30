@@ -9,7 +9,7 @@ import es.sopra.prototype.vo.UserData;
  */
 public interface ServiceCommand {
 
-    UserData saveOrUpdateIntoDB(UserData user);
+    boolean saveOrUpdateIntoDB(UserData user);
     boolean deleteFromDB(Long id);
 
 

@@ -36,7 +36,7 @@ public class ServiceHandlerImpl implements ServiceCommandHandler, ServiceQueryHa
     }
 
     @Override
-    public UserData saveOrUpdateIntoDB(UserData user) {
+    public boolean saveOrUpdateIntoDB(UserData user) {
         LOGGER.info("ServiceHandlerImpl.saveOrUpdateIntoDB");
         return serviceCommandHandler.saveOrUpdateIntoDB(user);
     }
@@ -45,11 +45,6 @@ public class ServiceHandlerImpl implements ServiceCommandHandler, ServiceQueryHa
     public boolean deleteFromDB(Long id) {
         LOGGER.info("ServiceHandlerImpl.deleteFromDB");
         return serviceCommandHandler.deleteFromDB(id);
-    }
-
-    @Override
-    public UserData pushIntoEventStore(UserData data) {
-        return null;
     }
 
     @Override

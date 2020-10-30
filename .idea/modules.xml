@@ -4,9 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/sopra-builder.iml" filepath="$PROJECT_DIR$/sopra-builder.iml" />
       <module fileurl="file://$PROJECT_DIR$/sopra-controller/sopra-controller.iml" filepath="$PROJECT_DIR$/sopra-controller/sopra-controller.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sopra-event-store/sopra-event-consumer/sopra-event-consumer.iml" filepath="$PROJECT_DIR$/sopra-event-store/sopra-event-consumer/sopra-event-consumer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sopra-event-store/sopra-event-producer/sopra-event-producer.iml" filepath="$PROJECT_DIR$/sopra-event-store/sopra-event-producer/sopra-event-producer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sopra-event-store/sopra-event-store.iml" filepath="$PROJECT_DIR$/sopra-event-store/sopra-event-store.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sopra-event-consumer/sopra-event-consumer.iml" filepath="$PROJECT_DIR$/sopra-event-consumer/sopra-event-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sopra-event-producer/sopra-event-producer.iml" filepath="$PROJECT_DIR$/sopra-event-producer/sopra-event-producer.iml" />
       <module fileurl="file://$PROJECT_DIR$/sopra-repositories/sopra-repositories.iml" filepath="$PROJECT_DIR$/sopra-repositories/sopra-repositories.iml" />
       <module fileurl="file://$PROJECT_DIR$/sopra-services/sopra-services.iml" filepath="$PROJECT_DIR$/sopra-services/sopra-services.iml" />
       <module fileurl="file://$PROJECT_DIR$/sopra-spring/sopra-spring.iml" filepath="$PROJECT_DIR$/sopra-spring/sopra-spring.iml" />

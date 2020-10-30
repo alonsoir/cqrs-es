@@ -11,6 +11,6 @@ public interface ServiceQuery {
     UserData getById(Long id);
 
     //Alguien tiene que guardar los datos en el cluster de lectura
-    UserData saveOrUpdateIntoDB(UserData user);
+    boolean saveOrUpdateIntoDB(UserData user);
 
 }

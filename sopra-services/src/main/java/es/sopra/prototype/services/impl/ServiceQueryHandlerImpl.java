@@ -40,7 +40,7 @@ public class ServiceQueryHandlerImpl implements ServiceQueryHandler, ServiceQuer
     }
 
     @Override
-    public UserData saveOrUpdateIntoDB(UserData user) {
+    public boolean saveOrUpdateIntoDB(UserData user) {
         LOGGER.info("ServiceQueryHandlerImpl.saveOrUpdateIntoDB: " + user.toString());
         return serviceQuery.saveOrUpdateIntoDB(user);
     }
@@ -55,10 +55,10 @@ public class ServiceQueryHandlerImpl implements ServiceQueryHandler, ServiceQuer
         updateQueryStatus(QueryStatus.ConsumedFromTopic);
 
         LOGGER.info("recoveredFromEventStore: " + recoveredFromEventStore.toString());
-        UserData savedPojoIntoQueryCluster = saveOrUpdateIntoDB(recoveredFromEventStore);
-        LOGGER.info("savedPojoIntoQueryCluster: " + savedPojoIntoQueryCluster.toString());
+        boolean savedPojoIntoQueryCluster = saveOrUpdateIntoDB(recoveredFromEventStore);
+        LOGGER.info("savedPojoIntoQueryCluster: " + savedPojoIntoQueryCluster);
 
-        return savedPojoIntoQueryCluster;
+        return recoveredFromEventStore;
     }
 
     @Override
