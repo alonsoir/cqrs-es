@@ -7,15 +7,6 @@
 		<groupId>sopra.prototype</groupId>
 		<version>${project.version}</version>
 	</parent>
-	<!--
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.10.RELEASE</version>
-		<relativePath/>
-	</parent>
--->
-	<groupId>sopra.prototype</groupId>
 	<artifactId>sopra-event-producer</artifactId>
 	<version>${project.version}</version>
 	<name>sopra-event-producer</name>
