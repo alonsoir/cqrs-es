@@ -7,16 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="sopra-event-producer" />
+        <module name="sopra-repositories" />
         <module name="sopra-services" />
+        <module name="sopra-event-consumer" />
         <module name="sopra-controller" />
         <module name="sopra-spring" />
-        <module name="sopra-repositories" />
         <module name="sopra-vo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="sopra-builder" target="1.8" />
       <module name="sopra-controller" target="1.8" />
+      <module name="sopra-event-consumer" target="1.8" />
+      <module name="sopra-event-producer" target="1.8" />
+      <module name="sopra-event-store" target="1.8" />
       <module name="sopra-repositories" target="1.8" />
       <module name="sopra-services" target="1.8" />
       <module name="sopra-spring" target="1.8" />
@@ -26,6 +31,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="sopra-controller" options="-parameters" />
+      <module name="sopra-event-consumer" options="-parameters" />
+      <module name="sopra-event-producer" options="-parameters" />
       <module name="sopra-repositories" options="-parameters" />
       <module name="sopra-services" options="-parameters" />
       <module name="sopra-spring" options="-parameters" />

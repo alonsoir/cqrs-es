@@ -3,14 +3,21 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
+		<artifactId>sopra-event-store</artifactId>
+		<groupId>sopra.prototype</groupId>
+		<version>${project.version}</version>
+	</parent>
+	<!--
+	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.10.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
+-->
 	<groupId>sopra.prototype</groupId>
 	<artifactId>sopra-event-producer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<name>sopra-event-producer</name>
 	<description>Kafka producer</description>
 
