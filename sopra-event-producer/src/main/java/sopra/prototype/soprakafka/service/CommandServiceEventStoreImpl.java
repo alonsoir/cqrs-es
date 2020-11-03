@@ -13,10 +13,6 @@ import sopra.prototype.soprakafka.model.CommandMessage;
 @Slf4j
 public class CommandServiceEventStoreImpl extends ServiceCommandObservable implements CommandServiceEventStore {
 
-    // para borrar en cuanto tenga el test
-    //private final CommandStreams commandStreams;
-    //private MessageChannel messageChannel;
-
     private final MessageProducer producer;
 
     private CommandStatus currentStatus;

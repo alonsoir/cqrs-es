@@ -3,7 +3,7 @@ package sopra.prototype.soprakafka.config;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
@@ -48,13 +48,27 @@ public class KafkaConfiguration {
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        return new DefaultKafkaProducerFactory<>(configProps);
+        configProps.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, 1);
+        configProps.put(ProducerConfig.RETRIES_CONFIG, Integer.MAX_VALUE);
+        configProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+        //configProps.put(ProducerConfig.TRANSACTIONAL_ID_CONFIG, "getting-things-done");
+        final DefaultKafkaProducerFactory<String, CommandMessage> factory =
+                new DefaultKafkaProducerFactory<>(configProps);
+        return factory;
     }
 
+    @Bean
+    public KafkaTemplate<String, CommandMessage> kafkaTemplate(@Autowired ProducerFactory<String, CommandMessage> factory) {
+        return new KafkaTemplate<>(factory);
+    }
+
+    /*
     @Bean
     public KafkaTemplate<String, CommandMessage> commandKafkaTemplate() {
         return new KafkaTemplate<>(commandProducerFactory());
     }
+
+     */
     //resuming the consumer
     @Bean
     public ApplicationListener<ListenerContainerIdleEvent> idleListener() {
@@ -68,6 +82,8 @@ public class KafkaConfiguration {
 
     @Bean
     public MessageProducer messageProducer() {
+
         return new MessageProducer();
     }
+
 }

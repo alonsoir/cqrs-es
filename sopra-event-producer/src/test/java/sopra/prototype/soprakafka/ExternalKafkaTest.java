@@ -7,7 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.concurrent.ListenableFuture;
 import sopra.prototype.soprakafka.model.CommandMessage;
 import sopra.prototype.soprakafka.service.CommandServiceEventStore;
 import sopra.prototype.soprakafka.service.MessageProducer;
@@ -19,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {CommandMessage.class, MessageProducer.class, CommandServiceEventStore.class})
+@SpringBootTest
 public class ExternalKafkaTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExternalKafkaTest.class);
@@ -55,9 +58,10 @@ public class ExternalKafkaTest {
         CommandMessage messageCommand = CommandMessage.builder()
                                                 .message(message)
                                                 .timestamp(System.currentTimeMillis())
-                                                .dateRegister(getActualFormatedDate())
-                .build();
+                                                .dateRegister(getActualFormatedDate()).build();
         // WHEN
+        //ListenableFuture<SendResult<String, CommandMessage>> listener = producer.sendMessageToTopic(messageCommand);
+        //boolean sent = listener.isDone();
         boolean sent = commandServiceEventStore.sendCommandMessage(messageCommand);
         assertTrue("Should be TRUE if sent.",sent);
 
