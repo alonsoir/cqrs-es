@@ -1,9 +1,9 @@
 package es.sopra.prototype.services.impl;
 
+import es.sopra.prototype.patterns.soprapatterns.observable.ServiceCommandObservable;
+import es.sopra.prototype.patterns.soprapatterns.status.CommandStatus;
 import es.sopra.prototype.repositories.UserDataRepository;
 import es.sopra.prototype.services.bd.ServiceCommand;
-import es.sopra.prototype.services.observable.ServiceCommandObservable;
-import es.sopra.prototype.services.status.CommandStatus;
 import es.sopra.prototype.vo.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class ServiceCommandImpl extends ServiceCommandObservable implements Serv
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCommandImpl.class);
 
     private final UserDataRepository userDataRepository;
-    private CommandStatus  currentStatus;
+    private CommandStatus currentStatus;
 
     @Autowired
     public ServiceCommandImpl(UserDataRepository _userDataRepository){

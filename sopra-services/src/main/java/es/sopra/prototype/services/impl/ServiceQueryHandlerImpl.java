@@ -1,15 +1,15 @@
 package es.sopra.prototype.services.impl;
 
+import es.sopra.prototype.patterns.soprapatterns.observer.ServiceQueryObserver;
+import es.sopra.prototype.patterns.soprapatterns.status.QueryStatus;
 import es.sopra.prototype.services.bd.ServiceQuery;
-import es.sopra.prototype.services.eventstore.ServiceQueryEventStore;
 import es.sopra.prototype.services.handler.ServiceQueryHandler;
-import es.sopra.prototype.services.observer.ServiceQueryObserver;
-import es.sopra.prototype.services.status.QueryStatus;
 import es.sopra.prototype.vo.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sopra.prototype.soprakafka.model.ServiceReceiver;
 
 import java.util.List;
 
@@ -19,46 +19,38 @@ public class ServiceQueryHandlerImpl implements ServiceQueryHandler, ServiceQuer
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceQueryHandlerImpl.class);
 
     private final ServiceQuery serviceQuery;
-    private final ServiceQueryEventStore serviceQueryEventStore;
+    private final ServiceReceiver serviceReceiver;
 
     @Autowired
-    public ServiceQueryHandlerImpl(ServiceQueryEventStore serviceQueryEventStore,ServiceQuery serviceQuery) {
-        this.serviceQueryEventStore = serviceQueryEventStore;
+    public ServiceQueryHandlerImpl(ServiceReceiver serviceReceiver,ServiceQuery serviceQuery) {
+        this.serviceReceiver = serviceReceiver;
         this.serviceQuery = serviceQuery;
     }
 
     @Override
     public List<UserData> listAll() {
-        LOGGER.info("ServiceQueryHandlerImpl.");
+        LOGGER.info("ServiceQueryHandlerImpl.listAll");
         return serviceQuery.listAll();
     }
 
     @Override
     public UserData getById(Long id) {
-        LOGGER.info("ServiceQueryHandlerImpl.getById: " + id);
+        LOGGER.info("ServiceQueryHandlerImpl.getById: {}" , id);
         return serviceQuery.getById(id);
     }
 
     @Override
     public boolean saveOrUpdateIntoDB(UserData user) {
-        LOGGER.info("ServiceQueryHandlerImpl.saveOrUpdateIntoDB: " + user.toString());
+        LOGGER.info("ServiceQueryHandlerImpl.saveOrUpdateIntoDB: {}",user.toString());
         return serviceQuery.saveOrUpdateIntoDB(user);
     }
 
-    @Override
-    public UserData poll() {
+    public boolean poll() throws InterruptedException {
         LOGGER.info("ServiceQueryHandlerImpl.poll");
-        // probablemente el objeto recuperado del EventStore será distinto al entity...
-        // habrá que hacer una transformacion seguro para guardar en la base de datos de lecturas.
-        // por comodidad voy a hacer que sean el mismo.
-        UserData recoveredFromEventStore = serviceQueryEventStore.poll();
-        updateQueryStatus(QueryStatus.ConsumedFromTopic);
+        boolean isReceived = serviceReceiver.getMessageFromTopic();
+        LOGGER.info("ServiceQueryHandlerImpl.poll {}",isReceived);
 
-        LOGGER.info("recoveredFromEventStore: " + recoveredFromEventStore.toString());
-        boolean savedPojoIntoQueryCluster = saveOrUpdateIntoDB(recoveredFromEventStore);
-        LOGGER.info("savedPojoIntoQueryCluster: " + savedPojoIntoQueryCluster);
-
-        return recoveredFromEventStore;
+        return isReceived;
     }
 
     @Override

@@ -47,8 +47,4 @@ public class ServiceHandlerImpl implements ServiceCommandHandler, ServiceQueryHa
         return serviceCommandHandler.deleteFromDB(id);
     }
 
-    @Override
-    public UserData poll() {
-        return null;
-    }
 }

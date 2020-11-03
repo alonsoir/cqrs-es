@@ -1,52 +1,47 @@
 package sopra.prototype.soprakafka.service;
 
+import es.sopra.prototype.patterns.soprapatterns.observable.ServiceCommandObservable;
+import es.sopra.prototype.patterns.soprapatterns.status.CommandStatus;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MimeTypeUtils;
+import org.springframework.util.concurrent.ListenableFuture;
 import sopra.prototype.soprakafka.model.CommandMessage;
-import sopra.prototype.soprakafka.model.Greetings;
-import sopra.prototype.soprakafka.stream.GreetingsStreams;
 
 @Service
 @Slf4j
-public class CommandServiceEventStoreImpl implements CommandServiceEventStore {
+public class CommandServiceEventStoreImpl extends ServiceCommandObservable implements CommandServiceEventStore {
 
-    private final GreetingsStreams greetingsStreams;
-    private MessageChannel messageChannel;
+    // para borrar en cuanto tenga el test
+    //private final CommandStreams commandStreams;
+    //private MessageChannel messageChannel;
 
-    public CommandServiceEventStoreImpl(GreetingsStreams greetingsStreams) {
+    private final MessageProducer producer;
 
-        this.greetingsStreams = greetingsStreams;
-        MessageChannel messageChannel = greetingsStreams.outboundGreetings();
+    private CommandStatus currentStatus;
 
+    @Autowired
+    public CommandServiceEventStoreImpl(final MessageProducer producer) {
+
+        // para borrar en cuanto tenga el test
+        this.producer = producer;
+        //MessageChannel messageChannel = commandStreams.outboundGreetings();
+        //Necesitaría algo que indicara que he inicializado el EventStore?
+        currentStatus = CommandStatus.Initialized;
+        notifyObservers(currentStatus);
     }
 
     public boolean sendCommandMessage(final CommandMessage message){
+        // Necesitas meter esta lógica en un Try.of para en caso de que haya alguna excepcion
+        // poner el estado adecuado.
         log.info("Sendind Command message {}",message);
-        return messageChannel.send(MessageBuilder
-                .withPayload(message)
-                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-                .build());
-    }
-    public void sendGreeting(final Greetings greetings) {
-        log.info("Sending greetings {}", greetings);
-
-        //MessageChannel messageChannel = greetingsStreams.outboundGreetings();
-        messageChannel.send(MessageBuilder
-                .withPayload(greetings)
-                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-                .build());
+        ListenableFuture<SendResult<String, CommandMessage>> listenable=  producer.sendMessageToTopic(message);
+        boolean messageSent = listenable.isDone();
+        CommandStatus status = messageSent ? currentStatus = CommandStatus.SavedEventStore :
+                CommandStatus.SavedFailedEventStore;
+        notifyObservers(status) ;
+        return messageSent;
     }
 
-    public void sendSimpleMessage(final String simpleMessage){
-        log.info("Sending simple message {}", simpleMessage);
-        //MessageChannel messageChannel = greetingsStreams.outboundGreetings();
-        messageChannel.send(MessageBuilder
-                .withPayload(simpleMessage)
-                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-                .build());
-    }
 }

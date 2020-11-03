@@ -2,7 +2,6 @@ package sopra.prototype.soprakafka.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -13,7 +12,8 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.event.ListenerContainerIdleEvent;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.stereotype.Component;
-import sopra.prototype.soprakafka.service.Receiver;
+import sopra.prototype.soprakafka.model.QueryMessage;
+import sopra.prototype.soprakafka.service.MessageListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,22 +41,20 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public ConsumerFactory<String, String> consumerFactory() {
+    public ConsumerFactory<String, QueryMessage> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, String> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, QueryMessage>> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, QueryMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-
         return factory;
     }
 
     @Bean
-    public Receiver receiver() {
-        return new Receiver();
+    public MessageListener messageListener() {
+        return new MessageListener();
     }
 
     //resuming the consumer

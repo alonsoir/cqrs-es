@@ -80,6 +80,7 @@
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-registry-prometheus:1.3.1" level="project" />
     <orderEntry type="library" name="Maven: io.prometheus:simpleclient_common:0.7.0" level="project" />
     <orderEntry type="library" name="Maven: io.prometheus:simpleclient:0.7.0" level="project" />
+    <orderEntry type="module" module-name="sopra-patterns" />
     <orderEntry type="module" module-name="sopra-event-consumer" />
     <orderEntry type="module" module-name="sopra-repositories" />
     <orderEntry type="module" module-name="sopra-vo" />

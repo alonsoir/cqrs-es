@@ -34,6 +34,7 @@
 	</properties>
 
 	<modules>
+		<module>sopra-patterns</module>
 		<module>sopra-event-consumer</module>
 		<module>sopra-event-producer</module>
 		<module>sopra-vo</module>
