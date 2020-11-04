@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import sopra.prototype.soprakafka.model.CommandMessage;
-import sopra.prototype.soprakafka.service.CommandServiceEventStore;
+//import sopra.prototype.soprakafka.service.CommandServiceEventStore;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,12 +20,12 @@ public class ServiceCommandHandlerImpl implements ServiceCommandHandler, Service
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCommandHandlerImpl.class);
 
     private final ServiceCommand serviceCommand;
-    private final CommandServiceEventStore eventStore;
+    //private final CommandServiceEventStore eventStore;
 
-    public ServiceCommandHandlerImpl(ServiceCommand serviceCommand, CommandServiceEventStore eventStore) {
+    public ServiceCommandHandlerImpl(ServiceCommand serviceCommand/*, CommandServiceEventStore eventStore*/) {
 
         this.serviceCommand = serviceCommand;
-        this.eventStore = eventStore;
+        //this.eventStore = eventStore;
     }
 
 
@@ -76,7 +76,8 @@ public class ServiceCommandHandlerImpl implements ServiceCommandHandler, Service
 
     public  boolean pushIntoEventStore(CommandMessage command) {
         LOGGER.info("ServiceCommandHandlerImpl.pushIntoEventStore");
-        return eventStore.sendCommandMessage(command);
+        return true;
+        //return eventStore.sendCommandMessage(command);
     }
 
     public void updateCommandStatus(CommandStatus status) {

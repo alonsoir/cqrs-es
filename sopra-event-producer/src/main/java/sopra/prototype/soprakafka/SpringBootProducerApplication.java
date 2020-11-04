@@ -1,38 +1,47 @@
 package sopra.prototype.soprakafka;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.core.env.Environment;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
-@SpringBootApplication(scanBasePackages = "sopra.prototype")
-@EntityScan(basePackages = "sopra.prototype")
-public class SpringBootProducerApplication {
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+public class SpringBootProducerApplication implements CommandLineRunner {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SpringBootProducerApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpringBootProducerApplication.class);
+    private static final String topic = "topic1";
 
-    private final Environment env;
-
-    public SpringBootProducerApplication( Environment env){
-      this.env = env;
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootProducerApplication.class, args).close();
     }
 
-    public static void main(String args) throws UnknownHostException {
-        SpringApplication app = new SpringApplication(SpringBootProducerApplication.class);
-        Environment env = app.run(args).getEnvironment();
-        String protocol = "http";
+    @Autowired
+    private KafkaTemplate<String, String> template;
 
-        LOG.info(
-                "\n----------------------------------------------------------\n\t"
-                        + "SpringBootProducerApplication '{}' is running! Access URLs:\n\t"
-                        + "Local: \t\t{}://localhost:{}\n\t" + "External: \t{}://{}:{}\n\t"
-                        + "Profile(s): \t{}\n----------------------------------------------------------",
-                env.getProperty("spring.application.name"), protocol, env.getProperty("server.port"), protocol,
-                InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"), env.getActiveProfiles());
+    private final CountDownLatch latch = new CountDownLatch(3);
+
+    @Override
+    public void run(String... args) throws Exception {
+        this.template.send(topic, "foo1");
+        this.template.send(topic, "foo2");
+        this.template.send(topic, "foo3");
+        latch.await(60, TimeUnit.SECONDS);
+        LOGGER.info("All received");
     }
+
+    @KafkaListener(topics = "topic1")
+    public void listen(ConsumerRecord<?, ?> cr) throws Exception {
+        LOGGER.info(cr.toString());
+        latch.countDown();
+    }
+
 }

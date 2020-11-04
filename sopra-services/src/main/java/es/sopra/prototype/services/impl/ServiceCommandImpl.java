@@ -49,4 +49,9 @@ public class ServiceCommandImpl extends ServiceCommandObservable implements Serv
         notifyObservers(currentStatus);
         return !isDeleted;
     }
+
+    public void observer(){
+        // Quien es mi observer? ServiceCommandHandlerImpl
+        //this.addObserver();
+    }
 }
