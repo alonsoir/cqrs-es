@@ -21,17 +21,22 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import sopra.prototype.soprakafka.listeners.Listener;
 import sopra.prototype.soprakafka.model.CommandMessage;
+import sopra.prototype.soprakafka.service.CommandServiceEventStore;
 import sopra.prototype.soprakafka.service.MessageProducer;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-
+/***
+ * Este test sirve para demostrar la funcionalidad básica de cada uno de los componentes de la arquitectura.
+ */
 @SpringBootTest
 public class QuickTests {
 
@@ -48,23 +53,46 @@ public class QuickTests {
     @Autowired
     private MessageProducer messageProducer;
 
+    @Autowired
+    private CommandServiceEventStore commandServiceEventStore;
+
     @Test
-    public void testPushingCommandMessageUsingMessageProducer(){
+    public void testPushingCommandUsingCommandServiceEventStore() throws InterruptedException{
 
         logger.info("testPushingCommandMessageUsingMessageProducer");
         CommandMessage message = CommandMessage.builder()
-                                               .message("This is a message")
-                                               .dateRegister("This is the date Register")
+                .message("This is another message using commandService-" + randomUUID())
+                .dateRegister(getActualFormatedDate())
+                .timestamp(System.currentTimeMillis())
+                .name(randomUUID())
+                .build();
+        boolean isSent = commandServiceEventStore.sendCommandMessage(message);
+        assertTrue(isSent,"isSent should be true if message was sent.");
+        boolean isReceived = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
+        assertFalse(isReceived,"isReceived should be false because it will be true if the countdown is reached...");
+    }
+
+    @Test
+    public void testPushingCommandMessageUsingMessageProducer() throws InterruptedException {
+
+        logger.info("testPushingCommandMessageUsingMessageProducer");
+        CommandMessage message = CommandMessage.builder()
+                                               .message("This is a message" + randomUUID())
+                                               .dateRegister(getActualFormatedDate())
                                                .timestamp(System.currentTimeMillis())
-                                               .name("This is the name of the command")
+                                               .name(randomUUID())
                                                .build();
 
         ListenableFuture<SendResult<String, CommandMessage>> messageSent = messageProducer.sendMessageToTopic(message);
         assertNotNull(messageSent);
+        boolean isSent = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
+        assertFalse(isSent,"should be false because it will be true if the countdown is reached...");
+
+
     }
 
     @Test
-    public void testSimple() throws Exception {
+    public void testSimple() throws InterruptedException {
         logger.info("testSimple");
         kafkaTemplate.send(topic1, "key0", "Alonso is testing using a Junit5 test file...");
         kafkaTemplate.flush();
@@ -75,7 +103,7 @@ public class QuickTests {
 
 
     @Test
-    public void testAutoCommit() throws Exception {
+    public void testAutoCommit() throws InterruptedException {
         logger.info("Start auto");
         ContainerProperties containerProps = new ContainerProperties("topic1", "topic2");
         final CountDownLatch latch = new CountDownLatch(4);
@@ -143,5 +171,13 @@ public class QuickTests {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         return props;
     }
-
+    private static String getActualFormatedDate() {
+        LocalDate localDate = LocalDate.now();//For reference
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        String formattedString = localDate.format(formatter);
+        return formattedString;
+    }
+    private String randomUUID() {
+        return UUID.randomUUID().toString();
+    }
 }

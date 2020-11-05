@@ -20,24 +20,30 @@ public class CommandServiceEventStoreImpl extends ServiceCommandObservable imple
     @Autowired
     public CommandServiceEventStoreImpl(final MessageProducer producer) {
 
-        // para borrar en cuanto tenga el test
         this.producer = producer;
-        //MessageChannel messageChannel = commandStreams.outboundGreetings();
-        //Necesitaría algo que indicara que he inicializado el EventStore?
         currentStatus = CommandStatus.Initialized;
         notifyObservers(currentStatus);
     }
 
     public boolean sendCommandMessage(final CommandMessage message){
-        // Necesitas meter esta lógica en un Try.of para en caso de que haya alguna excepcion
-        // poner el estado adecuado.
-        log.info("Sendind Command message {}",message);
-        ListenableFuture<SendResult<String, CommandMessage>> listenable=  producer.sendMessageToTopic(message);
-        boolean messageSent = listenable.isDone();
-        CommandStatus status = messageSent ? currentStatus = CommandStatus.SavedEventStore :
-                CommandStatus.SavedFailedEventStore;
-        notifyObservers(status) ;
-        return messageSent;
+        // TODO Necesitas meter esta lógica en un Try.of para en caso de que haya alguna excepcion
+        // poner el estado adecuado. y devolver el boolean adecuado
+        boolean status=false;
+        CommandStatus commandStatus;
+        log.info("Sendind Command message {}",message.toString());
+        try{
+            ListenableFuture<SendResult<String, CommandMessage>> listenable=  producer.sendMessageToTopic(message);
+            // I cannot use this isDone method because is not reliable to know if the message was sent.
+            commandStatus =  CommandStatus.SavedEventStore;
+            status=true;
+        }catch(Exception e ){
+            log.info("Something went wrong when sendind Command message {}", message.toString());
+            log.error(e.getMessage());
+            commandStatus =  CommandStatus.SavedFailedEventStore;
+        }
+        log.info("Sendind Command message status {}",commandStatus);
+        notifyObservers(commandStatus) ;
+        return status;
     }
 
 }
