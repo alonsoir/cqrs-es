@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="sopra-event-producer" />
         <module name="sopra-repositories" />
+        <module name="sopra-query-services" />
         <module name="sopra-services" />
         <module name="sopra-event-consumer" />
         <module name="sopra-controller" />
@@ -24,6 +25,7 @@
       <module name="sopra-event-producer" target="1.8" />
       <module name="sopra-event-store" target="1.8" />
       <module name="sopra-patterns" target="1.8" />
+      <module name="sopra-query-services" target="1.8" />
       <module name="sopra-repositories" target="1.8" />
       <module name="sopra-services" target="1.8" />
       <module name="sopra-spring" target="1.8" />
@@ -36,6 +38,7 @@
       <module name="sopra-event-consumer" options="-parameters" />
       <module name="sopra-event-producer" options="-parameters" />
       <module name="sopra-patterns" options="-parameters" />
+      <module name="sopra-query-services" options="-parameters" />
       <module name="sopra-repositories" options="-parameters" />
       <module name="sopra-services" options="-parameters" />
       <module name="sopra-spring" options="-parameters" />

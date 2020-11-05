@@ -39,6 +39,7 @@
 		<module>sopra-event-producer</module>
 		<module>sopra-vo</module>
 		<module>sopra-repositories</module>
+		<module>sopra-query-services</module>
 		<module>sopra-services</module>
 		<module>sopra-controller</module>
 		<module>sopra-spring</module>

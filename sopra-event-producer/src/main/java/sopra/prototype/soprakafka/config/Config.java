@@ -29,7 +29,7 @@ public class Config {
 
     private final String  brokers [] = {"0.0.0.0:9092"};
 
-    private final String topic = "topic1";
+    private final String topic = "users-event-topic-out";
 
     private final String groupId = "group1";
 

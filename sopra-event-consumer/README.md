@@ -1,6 +1,36 @@
 El proposito de este poc es poder crear un proyecto mínimo y viable para interactuar con un Event Store, en este caso 
 Kafka.
-
+Debido a la naturaleza de como se consumen eventos usando spring-kafka, tengo que inyectar la dependencia para poder
+ guardar en la base de datos de lecturas. En un mundo ideal, un método así podría devolver simplemente el evento
+  consumido, pero esto no es así, de momento.
+ 
+        @KafkaListener(topics = "users-event-topic-out")
+        public void consume(QueryMessage queryMessage) {
+            LOGGER.info("Consumind queryMessage {}",queryMessage.toString());
+            try {
+                boolean isReceived = this.listener.getLatch().await(1, TimeUnit.SECONDS);
+                LOGGER.info("isReceived? {}",isReceived);
+                currentStatus = QueryStatus.ConsumedFromTopic;
+                // ahora puedo interactuar con la base de datos de lecturas, puede que tenga que transformar el mensaje...
+                // tengo que inyectar aqui la dependencia para interactuar con el servicio para hacer la escritura en la
+                // bd de lecturas.
+                UserData user = new UserData();
+                user.setName(queryMessage.getName());
+                user.setDateRegister(queryMessage.getDateRegister());
+                serviceQuery.saveOrUpdateIntoDB(user);
+            }catch (InterruptedException e){
+                LOGGER.error("InterruptedException al recibir el mensaje");
+                currentStatus = QueryStatus.ErrorConsumingFromTopic;
+            }
+            notifyObservers(currentStatus);
+    
+        }
+        
+Actualmente, al tener ya el código para interactuar con la base de lecturas pero no terminado del todo, tengo que
+ procurar arreglar el error para conectarme a la base de datos de lecturas. El codigo está en sopra-query-services.
+ 
+ Mientras no arregle eso, el test en sopra-event-consumer no levantará el contexto de spring.
+ 
 Voy a usar la plataforma Confluent para tener en un mismo sitio Zookeeper y Kafka. Por comodidad, voy a usar Docker.
 # Prerequisitos 
 1. Instalar Docker 

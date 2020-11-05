@@ -1,7 +1,7 @@
 package sopra.prototype.soprakafka.service;
 
-import es.sopra.prototype.patterns.soprapatterns.observable.ServiceCommandObservable;
-import es.sopra.prototype.patterns.soprapatterns.status.CommandStatus;
+import sopra.prototype.patterns.soprapatterns.observable.ServiceCommandObservable;
+import sopra.prototype.patterns.soprapatterns.status.CommandStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.support.SendResult;
