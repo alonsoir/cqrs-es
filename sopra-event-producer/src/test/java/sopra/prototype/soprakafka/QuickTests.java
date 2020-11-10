@@ -68,6 +68,7 @@ public class QuickTests {
                 .build();
         boolean isSent = commandServiceEventStore.sendCommandMessage(message);
         assertTrue(isSent,"isSent should be true if message was sent.");
+
         boolean isReceived = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
         assertFalse(isReceived,"isReceived should be false because it will be true if the countdown is reached...");
     }

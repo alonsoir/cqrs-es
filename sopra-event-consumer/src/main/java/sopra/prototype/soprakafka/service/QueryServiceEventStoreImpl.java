@@ -39,18 +39,24 @@ public class QueryServiceEventStoreImpl extends ServiceQueryObservable implement
             boolean isReceived = this.listener.getLatch().await(1, TimeUnit.SECONDS);
             LOGGER.info("isReceived? {}",isReceived);
             currentStatus = QueryStatus.ConsumedFromTopic;
+            notifyObservers(currentStatus);
+
             // ahora puedo interactuar con la base de datos de lecturas, puede que tenga que transformar el mensaje...
             // tengo que inyectar aqui la dependencia para interactuar con el servicio para hacer la escritura en la
             // bd de lecturas.
             UserData user = new UserData();
             user.setName(queryMessage.getName());
             user.setDateRegister(queryMessage.getDateRegister());
-            serviceQuery.saveOrUpdateIntoDB(user);
+            boolean isSaved = serviceQuery.saveOrUpdateIntoDB(user);
+            currentStatus = QueryStatus.SavedIntoDB;
+            notifyObservers(currentStatus);
+
         }catch (InterruptedException e){
             LOGGER.error("InterruptedException al recibir el mensaje");
             currentStatus = QueryStatus.ErrorConsumingFromTopic;
+            notifyObservers(currentStatus);
+
         }
-        notifyObservers(currentStatus);
 
     }
 }

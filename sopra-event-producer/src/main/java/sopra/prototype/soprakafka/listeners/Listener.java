@@ -10,7 +10,9 @@ public class Listener {
 
     @KafkaListener(id = "foo", topics = "test1")
     public void listen1(String foo) {
+
         this.getLatch1().countDown();
+
     }
 
     public CountDownLatch getLatch1() {

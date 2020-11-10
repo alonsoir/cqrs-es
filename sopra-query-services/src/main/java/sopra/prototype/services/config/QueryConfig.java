@@ -2,10 +2,7 @@ package sopra.prototype.services.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -19,14 +16,20 @@ import java.util.HashMap;
 
 @Configuration
 @ConfigurationProperties()
-@PropertySource({"classpath:/config/application-query.properties"})
+@PropertySource({"classpath:application-query.properties"})
 //TODO no se porqué, pero no estoy cargando este properties, es como si al no encontrarlo, spring cargara un
 // application.properties por defecto y yo quiero poder cargar este application-query.properties...
+// confirmado, está cargando el application.properties que está en sopra-spring.
+// Carga el que está en sopra-spring y tambien carga este. Si encuentra primero una propiedad en el sopra-spring,
+// carga ese valor, aunque haya uno en el application-query.properties.
+// Voy a desactivar todas las propiedades de bases de datos del general para que los valores útiles sean de
+// application-query.properties.
 @EnableJpaRepositories(
         basePackages = "sopra.prototype.repositories",
         entityManagerFactoryRef = "userEntityManager",
         transactionManagerRef = "userTransactionManager"
 )
+@ComponentScan("sopra.prototype.user.services")
 public class QueryConfig {
 
     @Autowired
@@ -39,8 +42,7 @@ public class QueryConfig {
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(userDataSource());
         //"sopra.prototype.repositories"
-        em.setPackagesToScan(new String[] { "sopra.prototype.vo","sopra.prototype.repositories",
-                "sopra.prototype.services","sopra.prototype.services.impl"});
+        em.setPackagesToScan(new String[] { "sopra.prototype.vo","sopra.prototype.repositories"});
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

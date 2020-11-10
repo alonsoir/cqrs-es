@@ -1,9 +1,6 @@
 package sopra.prototype.vo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedResource;
@@ -16,11 +13,12 @@ import io.swagger.annotations.ApiModelProperty;
 public class UserData {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(notes = "The auto-generated id of the user data", required = true)
 	@Column(name = "ID_USER_DATA")
 	private Integer idUserData;
 	@ApiModelProperty(notes = "The name of the user data", required = true)
-	@Column(name = "NAME")
+	@Column(name = "NAME",unique = true)
 	private String name;
 	@ApiModelProperty(notes = "The date when the user data has been registered", required = true)
 	@Column(name = "DATE_REGISTER")

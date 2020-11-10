@@ -1,13 +1,14 @@
-package sopra.prototype.services.impl;
+package sopra.prototype.user.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import sopra.prototype.repositories.UserDataRepository;
-import sopra.prototype.services.UserDataService;
 import sopra.prototype.vo.UserData;
 
 /**
@@ -37,15 +38,22 @@ public class UserDataServiceImpl implements UserDataService {
 	}
 
 	@Override
+	@Transactional
 	public UserData saveOrUpdate(UserData UserData) {
 		userDataRepository.save(UserData);
 		return UserData;
 	}
 
 	@Override
+	@Transactional
 	public void delete(Integer id) {
 		userDataRepository.deleteById(id);
 
+	}
+
+	@Override
+	public List<UserData> findByName(String name) {
+		return userDataRepository.findByName(name);
 	}
 
 }
