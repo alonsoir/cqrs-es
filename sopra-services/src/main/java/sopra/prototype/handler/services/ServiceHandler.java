@@ -1,6 +1,6 @@
-package sopra.prototype.services.handler;
+package sopra.prototype.handler.services;
 
-import sopra.prototype.services.bd.ServiceQueryOnly;
+import sopra.prototype.command.handler.services.ServiceCommandHandler;
 
 /***
  * Esta interfaz define el contrato del servicio encargado de interacccionar con ServiceCommandHandler y

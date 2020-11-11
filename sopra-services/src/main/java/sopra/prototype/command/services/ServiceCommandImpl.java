@@ -1,14 +1,15 @@
-package sopra.prototype.services.impl;
+package sopra.prototype.command.services;
 
 import sopra.prototype.patterns.soprapatterns.observable.ServiceCommandObservable;
 import sopra.prototype.patterns.soprapatterns.status.CommandStatus;
 import sopra.prototype.repositories.UserDataRepository;
-import sopra.prototype.services.bd.ServiceCommand;
 import sopra.prototype.vo.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Implementación del servicio de commandos. Tiene que guardar en Base de datos y señalar que ha conseguido guardar
@@ -48,6 +49,16 @@ public class ServiceCommandImpl extends ServiceCommandObservable implements Serv
         currentStatus = CommandStatus.DeletedFromDB;
         notifyObservers(currentStatus);
         return !isDeleted;
+    }
+
+    @Override
+    public List<UserData> listAll() {
+        return userDataRepository.findAll();
+    }
+
+    @Override
+    public List<UserData> findByName(String name) {
+        return userDataRepository.findByName(name);
     }
 
     public void observer(){

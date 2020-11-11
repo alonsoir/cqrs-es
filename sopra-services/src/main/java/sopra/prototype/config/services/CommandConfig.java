@@ -1,4 +1,4 @@
-package sopra.prototype.services.config;
+package sopra.prototype.config.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -30,7 +30,8 @@ import java.util.HashMap;
         transactionManagerRef = "userTransactionManager"
 )
 @ComponentScan("sopra.prototype.user.services")
-public class QueryConfig {
+@ComponentScan("sopra.prototype.command.services")
+public class CommandConfig {
 
     @Autowired
     private Environment env;
@@ -61,9 +62,9 @@ public class QueryConfig {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
-        dataSource.setUrl(env.getProperty("spring.datasource.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.username"));
-        dataSource.setPassword(env.getProperty("spring.datasource.password"));
+        dataSource.setUrl(env.getProperty("spring.datasource.commands.url"));
+        dataSource.setUsername(env.getProperty("spring.datasource.commands.username"));
+        dataSource.setPassword(env.getProperty("spring.datasource.commands.password"));
 
         return dataSource;
     }

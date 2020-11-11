@@ -1,8 +1,9 @@
-package sopra.prototype.services;
+package sopra.prototype.user.services;
+
+import org.springframework.data.repository.query.Param;
+import sopra.prototype.vo.UserData;
 
 import java.util.List;
-
-import sopra.prototype.vo.UserData;
 
 public interface UserDataService {
 
@@ -13,5 +14,7 @@ public interface UserDataService {
 	UserData saveOrUpdate(UserData product);
 
 	void delete(Integer id);
+
+	List<UserData> findByName(@Param("name")String name);
 
 }

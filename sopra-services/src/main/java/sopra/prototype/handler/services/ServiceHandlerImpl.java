@@ -1,8 +1,6 @@
-package sopra.prototype.services.impl;
+package sopra.prototype.handler.services;
 
-import sopra.prototype.services.bd.ServiceQueryOnly;
-import sopra.prototype.services.handler.ServiceCommandHandler;
-import sopra.prototype.services.handler.ServiceQueryHandler;
+import sopra.prototype.command.handler.services.ServiceCommandHandler;
 import sopra.prototype.vo.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +26,11 @@ public class ServiceHandlerImpl implements ServiceCommandHandler, ServiceQueryOn
     public List<UserData> listAll() {
         LOGGER.info("ServiceHandlerImpl.listAll");
         return serviceQueryHandler.listAll();
+    }
+
+    @Override
+    public List<UserData> findByName(String name) {
+        return serviceCommandHandler.findByName(name);
     }
 
     @Override

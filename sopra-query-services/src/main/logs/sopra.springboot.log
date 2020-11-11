@@ -696,7 +696,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 ""2020-11-10 09:50:21 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 ""2020-11-10 09:50:21 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 ""2020-11-10 09:50:22 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2020-11-10 09:50:31 [main] WARN  o.s.w.c.s.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'serviceCommandHandlerImpl' defined in file [/Users/aironman/gitProjects/sopra/challenge-ING/challengeing/sopra-services/target/classes/sopra/prototype/services/impl/ServiceCommandHandlerImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'sopra.prototype.services.bd.ServiceCommand' available: expected single matching bean but found 2: serviceCommandImpl,serviceHandlerImpl
+""2020-11-10 09:50:31 [main] WARN  o.s.w.c.s.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'serviceCommandHandlerImpl' defined in file [/Users/aironman/gitProjects/sopra/challenge-ING/challengeing/sopra-services/target/classes/sopra/prototype/services/impl/ServiceCommandHandlerImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'sopra.prototype.command.services.ServiceCommand' available: expected single matching bean but found 2: serviceCommandImpl,serviceHandlerImpl
 ""2020-11-10 09:50:31 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
 
 ***************************
@@ -705,7 +705,7 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in sopra.prototype.services.impl.ServiceCommandHandlerImpl required a single bean, but 2 were found:
+Parameter 0 of constructor in sopra.prototype.command.handler.services.ServiceCommandHandlerImpl required a single bean, but 2 were found:
 	- serviceCommandImpl: defined in file [/Users/aironman/gitProjects/sopra/challenge-ING/challengeing/sopra-services/target/classes/sopra/prototype/services/impl/ServiceCommandImpl.class]
 	- serviceHandlerImpl: defined in file [/Users/aironman/gitProjects/sopra/challenge-ING/challengeing/sopra-services/target/classes/sopra/prototype/services/impl/ServiceHandlerImpl.class]
 
@@ -780,7 +780,7 @@ Consider marking one of the beans as @Primary, updating the consumer to accept m
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:220)
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:53)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'serviceCommandHandlerImpl' defined in file [/Users/aironman/gitProjects/sopra/challenge-ING/challengeing/sopra-services/target/classes/sopra/prototype/services/impl/ServiceCommandHandlerImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'sopra.prototype.services.bd.ServiceCommand' available: expected single matching bean but found 2: serviceCommandImpl,serviceHandlerImpl
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'serviceCommandHandlerImpl' defined in file [/Users/aironman/gitProjects/sopra/challenge-ING/challengeing/sopra-services/target/classes/sopra/prototype/services/impl/ServiceCommandHandlerImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'sopra.prototype.command.services.ServiceCommand' available: expected single matching bean but found 2: serviceCommandImpl,serviceHandlerImpl
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:228)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358)
@@ -801,7 +801,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
 	... 63 common frames omitted
-Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'sopra.prototype.services.bd.ServiceCommand' available: expected single matching bean but found 2: serviceCommandImpl,serviceHandlerImpl
+Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'sopra.prototype.command.services.ServiceCommand' available: expected single matching bean but found 2: serviceCommandImpl,serviceHandlerImpl
 	at org.springframework.beans.factory.config.DependencyDescriptor.resolveNotUnique(DependencyDescriptor.java:220)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1265)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)

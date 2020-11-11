@@ -1,9 +1,10 @@
-package sopra.prototype.services.impl;
+package sopra.prototype.command.handler.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import sopra.prototype.command.services.ServiceCommand;
 import sopra.prototype.patterns.soprapatterns.observer.ServiceCommandObserver;
 import sopra.prototype.patterns.soprapatterns.status.CommandStatus;
-import sopra.prototype.services.bd.ServiceCommand;
-import sopra.prototype.services.handler.ServiceCommandHandler;
 import sopra.prototype.vo.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +14,11 @@ import sopra.prototype.soprakafka.service.CommandServiceEventStore;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
+@ComponentScan("sopra.prototype.soprakafka.service")
+@ComponentScan("sopra.prototype.command.services")
 public class ServiceCommandHandlerImpl implements ServiceCommandHandler, ServiceCommandObserver {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCommandHandlerImpl.class);
@@ -22,6 +26,7 @@ public class ServiceCommandHandlerImpl implements ServiceCommandHandler, Service
     private final ServiceCommand serviceCommand;
     private final CommandServiceEventStore eventStore;
 
+    @Autowired
     public ServiceCommandHandlerImpl(ServiceCommand serviceCommand, CommandServiceEventStore eventStore) {
 
         this.serviceCommand = serviceCommand;
@@ -65,6 +70,18 @@ public class ServiceCommandHandlerImpl implements ServiceCommandHandler, Service
         boolean pushedToTopic = pushIntoEventStore(message);
         LOGGER.info("deletedFromDB : " + deletedFromDB + " pushedToTopic: " + pushedToTopic);
         return deletedFromDB & pushedToTopic;
+    }
+
+    @Override
+    public List<UserData> listAll() {
+        LOGGER.info("ServiceCommandHandlerImpl.listAll.");
+        return serviceCommand.listAll();
+    }
+
+    @Override
+    public List<UserData> findByName(String name) {
+        LOGGER.info("ServiceCommandHandlerImpl.findByName. {}",name);
+        return serviceCommand.findByName(name);
     }
 
     // todo esta funcion debe estar en algun proyecto con funciones comunes, pq ahora mismo está en tres sitios.

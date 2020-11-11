@@ -1,5 +1,6 @@
 package sopra.prototype.soprakafka.service;
 
+import org.springframework.context.annotation.ComponentScan;
 import sopra.prototype.patterns.soprapatterns.observable.ServiceCommandObservable;
 import sopra.prototype.patterns.soprapatterns.status.CommandStatus;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import sopra.prototype.soprakafka.model.CommandMessage;
 
 @Service
+@ComponentScan("sopra.prototype.soprakafka.config")
 @Slf4j
 public class CommandServiceEventStoreImpl extends ServiceCommandObservable implements CommandServiceEventStore {
 

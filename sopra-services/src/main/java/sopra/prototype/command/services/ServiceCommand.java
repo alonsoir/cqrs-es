@@ -1,6 +1,9 @@
-package sopra.prototype.services.bd;
+package sopra.prototype.command.services;
 
+import org.springframework.data.repository.query.Param;
 import sopra.prototype.vo.UserData;
+
+import java.util.List;
 
 /***
  * Esta interfaz define el contrato para saber como interaccionar con la bd de escrituras. Super naive, por ahora.
@@ -11,6 +14,10 @@ public interface ServiceCommand {
 
     boolean saveOrUpdateIntoDB(UserData user);
     boolean deleteFromDB(Integer id);
+
+    List<UserData> listAll();
+    List<UserData> findByName(@Param("name")String name);
+
 
 
 }
