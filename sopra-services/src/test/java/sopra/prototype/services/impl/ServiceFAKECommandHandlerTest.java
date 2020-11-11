@@ -2,21 +2,20 @@ package sopra.prototype.services.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.test.context.SpringBootTest;
-import sopra.prototype.config.services.CommandHandlerConfig;
+import sopra.prototype.config.services.CommandConfig;
 
 // TODO no me está instanciando ServiceCommandHandler, de hecho, el test no me dice absolutamente nada.
 // voy a tener que instanciar internamente cada una de las dependencias de ServiceCommandHandler...
-@SpringBootTest(classes={CommandHandlerConfig.class})
+@SpringBootTest(classes={CommandConfig.class})
 @Slf4j
 public class ServiceFAKECommandHandlerTest {
-/*
     //@Autowired
     //private ServiceCommandHandler serviceCommandHandler;
-    @Autowired
-    private ServiceCommand serviceCommand;
+    // @Autowired
+    // private ServiceCommand serviceCommand;
     //@Autowired
     //private CommandServiceEventStore eventStore;
-
+/*
     @Test
     private void saveOrUpdateIntoDB(){
 
@@ -81,5 +80,6 @@ public class ServiceFAKECommandHandlerTest {
         assertNotNull(list,"list should not null");
         assertTrue(list.size()>0,"list size should be greater than zero.");
     }
-*/
+    */
+
 }

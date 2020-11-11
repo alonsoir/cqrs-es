@@ -1,13 +1,11 @@
 package sopra.prototype.soprakafka;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -16,7 +14,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
-import org.springframework.kafka.listener.MessageListener;
 import sopra.prototype.soprakafka.service.Listener;
 
 import java.time.LocalDate;
@@ -24,18 +21,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /***
  * Este test sirve para demostrar la funcionalidad básica de cada uno de los componentes de la arquitectura.
  */
 @SpringBootTest
+@Slf4j
 public class QuickTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(QuickTests.class);
     // esto tiene que tirar del properties.
     private final String topic1 = "users-event-topic-out";
     private final String groupId = "group1";
@@ -46,7 +39,6 @@ public class QuickTests {
 
     @Test
     public void testMessageListener(){
-        logger.info("Start testMessageListener. This test is going to test messageListener dependency...");
         messageListener.getLatch();
     }
 /*

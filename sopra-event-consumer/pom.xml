@@ -120,7 +120,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>sopra.prototype.soprakafka.SpringKafkaApplication</mainClass>
+					<mainClass>sopra.prototype.soprakafka.SopraKafkaApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
