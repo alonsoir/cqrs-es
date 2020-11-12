@@ -41,6 +41,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuickTests {
 
     private static final Logger logger = LoggerFactory.getLogger(QuickTests.class);
+    // usados para el contenedor autogestionado por esta prueba unitario.
     private final String topic1 = "topic1";
     private final Object group = "group1";
 
@@ -129,8 +130,8 @@ public class QuickTests {
         template.sendDefault("0", "baz");
         template.sendDefault("2", "qux");
         template.flush();
-        boolean isDataSent = latch.await(1, TimeUnit.SECONDS);
-        assertFalse(isDataSent,"should be false because it will be true if the countdown is reached...");
+        boolean isDataSent = latch.await(10, TimeUnit.SECONDS);
+        assertTrue(isDataSent,"should be false because it will be true if the countdown is reached...");
         container.stop();
         logger.info("Stop auto");
 

@@ -113,25 +113,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<build>
-		<defaultGoal>spring-boot:run</defaultGoal>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<mainClass>sopra.prototype.soprakafka.SpringBootProducerApplication</mainClass>
-				</configuration>
-			</plugin>
-		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-	</build>
-
 	<organization>
 		<name>sopra</name>
 		<url>https://www.soprasteria.es/es</url>

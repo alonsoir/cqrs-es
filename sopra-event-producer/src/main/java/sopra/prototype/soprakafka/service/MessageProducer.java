@@ -15,13 +15,15 @@ public class MessageProducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MessageProducer.class);
 
-    @Autowired
-    private KafkaTemplate<String, CommandMessage> kafkaCommandsTemplate;
+    private final KafkaTemplate<String, CommandMessage> kafkaCommandsTemplate;
 
     @Value(value = "${command.topic.name}")
     private String topicName;
 
-    public MessageProducer() {
+    @Autowired
+    public MessageProducer(final KafkaTemplate<String, CommandMessage> kafkaCommandsTemplate) {
+        LOGGER.info("MessageProducer...");
+        this.kafkaCommandsTemplate=kafkaCommandsTemplate;
     }
 
     public ListenableFuture<SendResult<String, CommandMessage>> sendMessageToTopic (CommandMessage message) {

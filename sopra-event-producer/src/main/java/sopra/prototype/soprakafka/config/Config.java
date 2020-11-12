@@ -6,6 +6,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -24,14 +25,18 @@ import java.util.Map;
 @EnableKafka
 public class Config {
 
-    // todo esto tiene que pillar valor del properties
-    private final String broker = "0.0.0.0:9092";
+    // todo esto tiene que pillar valor del application.properties de sopra-spring.
+    @Value(value = "${spring.kafka.producer.bootstrap-servers}")
+    private String broker;
 
-    private final String  brokers [] = {"0.0.0.0:9092"};
+    @Value(value = "${spring.kafka.producer.bootstrap-servers}")
+    private String  brokers[];
 
-    private final String topic = "users-event-topic-out";
+    @Value(value = "${command.topic.name}")
+    private String topic;
 
-    private final String groupId = "group1";
+    @Value(value = "${spring.kafka.producer.group-id}")
+    private String groupId;
 
     @Bean
     public KafkaAdmin admin() {
@@ -149,6 +154,6 @@ public class Config {
 
     @Bean
     public MessageProducer messageProducer(){
-        return new MessageProducer();
+        return new MessageProducer(kafkaCommandsTemplate());
     }
 }

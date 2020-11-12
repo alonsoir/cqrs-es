@@ -23,6 +23,9 @@ public class CommandServiceEventStoreImpl extends ServiceCommandObservable imple
     public CommandServiceEventStoreImpl(final MessageProducer producer) {
 
         this.producer = producer;
+        // TODO tienes que indicar quien es el observador! si no, al notificar, la lista estará vacía y el observer
+        //  no será notificado. Esto es un bug que ya sospechaba.
+        // addObserver();
         currentStatus = CommandStatus.Initialized;
         notifyObservers(currentStatus);
     }

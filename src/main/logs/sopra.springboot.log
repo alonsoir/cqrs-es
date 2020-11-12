@@ -1,66 +1,27 @@
-"2020-11-11 12:42:38 [main] INFO  s.p.services.impl.ServiceCommandTest - Starting ServiceCommandTest on MacBook-Pro-de-Alonso.local with PID 11284 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
-""2020-11-11 12:42:38 [main] INFO  s.p.services.impl.ServiceCommandTest - The following profiles are active: dev
-""2020-11-11 12:42:39 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-""2020-11-11 12:42:39 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
-""2020-11-11 12:42:39 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-""2020-11-11 12:42:39 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-""2020-11-11 12:42:39 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2020-11-11 12:42:40 [main] INFO  s.p.services.impl.ServiceCommandTest - Started ServiceCommandTest in 2.899 seconds (JVM running for 4.098)
-""2020-11-11 12:42:40 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@497ed877
-""2020-11-11 12:42:40 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 12:42:40 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@341c6ac2
-""2020-11-11 12:42:40 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 12:42:40 [main] INFO  s.p.c.services.ServiceCommandImpl - isDeleted?: true
-""2020-11-11 12:48:52 [main] INFO  s.p.services.impl.ServiceCommandTest - Starting ServiceCommandTest on MacBook-Pro-de-Alonso.local with PID 11337 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
-""2020-11-11 12:48:52 [main] INFO  s.p.services.impl.ServiceCommandTest - The following profiles are active: dev
-""2020-11-11 12:48:53 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-""2020-11-11 12:48:54 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
-""2020-11-11 12:48:54 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-""2020-11-11 12:48:54 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-""2020-11-11 12:48:54 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2020-11-11 12:48:55 [main] INFO  s.p.services.impl.ServiceCommandTest - Started ServiceCommandTest in 3.061 seconds (JVM running for 4.219)
-""2020-11-11 12:48:55 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@3a788fe0
-""2020-11-11 12:48:55 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 12:48:55 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@6f15f52a
-""2020-11-11 12:48:55 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 12:48:55 [main] INFO  s.p.c.services.ServiceCommandImpl - isDeleted?: true
-""2020-11-11 13:43:36 [main] INFO  s.p.services.impl.ServiceCommandTest - Starting ServiceCommandTest on MacBook-Pro-de-Alonso.local with PID 11898 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
-""2020-11-11 13:43:36 [main] INFO  s.p.services.impl.ServiceCommandTest - The following profiles are active: dev
-""2020-11-11 13:43:36 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-""2020-11-11 13:43:36 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
-""2020-11-11 13:43:36 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-""2020-11-11 13:43:37 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-""2020-11-11 13:43:37 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2020-11-11 13:43:38 [main] INFO  s.p.services.impl.ServiceCommandTest - Started ServiceCommandTest in 3.688 seconds (JVM running for 4.808)
-""2020-11-11 13:43:38 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@497ed877
-""2020-11-11 13:43:38 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 13:43:38 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@625487a6
-""2020-11-11 13:43:38 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 13:43:38 [main] INFO  s.p.c.services.ServiceCommandImpl - isDeleted?: true
-""2020-11-11 15:52:16 [main] INFO  s.p.services.impl.ServiceCommandTest - Starting ServiceCommandTest on MacBook-Pro-de-Alonso.local with PID 12917 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
-""2020-11-11 15:52:16 [main] INFO  s.p.services.impl.ServiceCommandTest - The following profiles are active: dev
-""2020-11-11 15:52:17 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-""2020-11-11 15:52:17 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
-""2020-11-11 15:52:17 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-""2020-11-11 15:52:17 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-""2020-11-11 15:52:18 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2020-11-11 15:52:19 [main] INFO  s.p.services.impl.ServiceCommandTest - Started ServiceCommandTest in 2.853 seconds (JVM running for 3.863)
-""2020-11-11 15:52:19 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@3a788fe0
-""2020-11-11 15:52:19 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 15:52:19 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@5c59a0f7
-""2020-11-11 15:52:19 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 15:52:19 [main] INFO  s.p.c.services.ServiceCommandImpl - isDeleted?: true
-""2020-11-11 17:27:24 [main] INFO  s.p.services.impl.ServiceCommandTest - Starting ServiceCommandTest on MacBook-Pro-de-Alonso.local with PID 13445 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
-""2020-11-11 17:27:24 [main] INFO  s.p.services.impl.ServiceCommandTest - The following profiles are active: dev
-""2020-11-11 17:27:25 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-""2020-11-11 17:27:25 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
-""2020-11-11 17:27:25 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-""2020-11-11 17:27:25 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-""2020-11-11 17:27:26 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2020-11-11 17:27:26 [main] INFO  s.p.services.impl.ServiceCommandTest - Started ServiceCommandTest in 2.917 seconds (JVM running for 4.061)
-""2020-11-11 17:27:26 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@3a788fe0
-""2020-11-11 17:27:26 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 17:27:26 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@70fede7d
-""2020-11-11 17:27:26 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
-""2020-11-11 17:27:26 [main] INFO  s.p.c.services.ServiceCommandImpl - isDeleted?: true
+"2020-11-12 12:35:19 [main] INFO  s.p.services.impl.ServiceCommandTest - Starting ServiceCommandTest on MacBook-Pro-de-Alonso.local with PID 17683 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
+""2020-11-12 12:35:19 [main] INFO  s.p.services.impl.ServiceCommandTest - The following profiles are active: dev
+""2020-11-12 12:35:20 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+""2020-11-12 12:35:20 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+""2020-11-12 12:35:20 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+""2020-11-12 12:35:20 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+""2020-11-12 12:35:21 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2020-11-12 12:35:21 [main] INFO  s.p.services.impl.ServiceCommandTest - Started ServiceCommandTest in 3.126 seconds (JVM running for 4.703)
+""2020-11-12 12:35:21 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@497ed877
+""2020-11-12 12:35:21 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
+""2020-11-12 12:35:22 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@19526f1d
+""2020-11-12 12:35:22 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
+""2020-11-12 12:35:22 [main] INFO  s.p.c.services.ServiceCommandImpl - isDeleted?: true
+""2020-11-12 16:52:08 [main] INFO  s.p.services.impl.ServiceCommandTest - Starting ServiceCommandTest on MacBook-Pro-de-Alonso.local with PID 19173 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
+""2020-11-12 16:52:08 [main] INFO  s.p.services.impl.ServiceCommandTest - The following profiles are active: dev
+""2020-11-12 16:52:09 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+""2020-11-12 16:52:09 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+""2020-11-12 16:52:09 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+""2020-11-12 16:52:10 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+""2020-11-12 16:52:10 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2020-11-12 16:52:11 [main] INFO  s.p.services.impl.ServiceCommandTest - Started ServiceCommandTest in 2.894 seconds (JVM running for 3.913)
+""2020-11-12 16:52:11 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@3a788fe0
+""2020-11-12 16:52:11 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
+""2020-11-12 16:52:11 [main] INFO  s.p.c.services.ServiceCommandImpl - userSaved: sopra.prototype.vo.UserData@3d1c933
+""2020-11-12 16:52:11 [main] INFO  s.p.c.services.ServiceCommandImpl - isPresent?: false
+""2020-11-12 16:52:11 [main] INFO  s.p.c.services.ServiceCommandImpl - isDeleted?: true
 "

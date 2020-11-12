@@ -1,47 +1,60 @@
 package sopra.prototype.services.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import sopra.prototype.command.services.ServiceCommand;
 import sopra.prototype.config.services.CommandConfig;
+import sopra.prototype.services.impl.utils.SopraUtils;
+import sopra.prototype.soprakafka.model.CommandMessage;
+import sopra.prototype.soprakafka.service.CommandServiceEventStore;
+import sopra.prototype.vo.UserData;
 
-// TODO no me está instanciando ServiceCommandHandler, de hecho, el test no me dice absolutamente nada.
-// voy a tener que instanciar internamente cada una de las dependencias de ServiceCommandHandler...
-@SpringBootTest(classes={CommandConfig.class})
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import sopra.prototype.soprakafka.config.Config;
+@SpringBootTest(classes={CommandConfig.class,Config.class})
 @Slf4j
 public class ServiceFAKECommandHandlerTest {
-    //@Autowired
-    //private ServiceCommandHandler serviceCommandHandler;
-    // @Autowired
-    // private ServiceCommand serviceCommand;
-    //@Autowired
-    //private CommandServiceEventStore eventStore;
-/*
+
+    @Autowired
+    private ServiceCommand serviceCommand;
+
+    @Autowired
+    private CommandServiceEventStore commandServiceEventStore;
+
     @Test
-    private void saveOrUpdateIntoDB(){
+    public void testSaveOrUpdateIntoDB(){
 
         // GIVEN
         UserData user = new UserData();
         String name = "Papa";
         user.setName(name);
         user.setDateRegister(SopraUtils.getActualFormatedDate());
-        //WHEN
-        boolean isUserSaved = serviceCommand.saveOrUpdateIntoDB(user);
+
+        // WHEN
+        boolean saved = serviceCommand.saveOrUpdateIntoDB(user);
+
         // THEN
-        assertTrue(isUserSaved,"isUserSaved should be true");
+        assertTrue(saved,"saved should be true");
+        List<UserData> listUsers = serviceCommand.listAll();
+        assertNotNull(listUsers,"listUsers should not be null");
+        assertTrue(listUsers.size()>0,"Should be greater than zero.");
 
-        CommandMessage message = CommandMessage.builder()
-                .timestamp(System.currentTimeMillis())
-                .message("User " + user.getName() + " was created at " + LocalDate.now())
-                .dateRegister(user.getDateRegister())
-                .name(user.getName())
-                .build();
+        CommandMessage commandMessage =
+                CommandMessage.builder().message("a message").dateRegister("a date register").name("a name").timestamp(System.currentTimeMillis()).build();
 
-        //boolean agregationCreationPushedToEventStore= eventStore.sendCommandMessage(message);
-        //assertTrue(agregationCreationPushedToEventStore,"agregationCreationPushedToEventStore should be true");
+        boolean isCommandSent  = commandServiceEventStore.sendCommandMessage(commandMessage);
+        assertTrue(isCommandSent,"isCommandSent should be true.");
 
     }
+
     @Test
-    private void deleteFromDB(){
+    public void testdeleteFromDB(){
+
         // GIVEN
         UserData user = new UserData();
         String name = "Mama";
@@ -53,7 +66,7 @@ public class ServiceFAKECommandHandlerTest {
         assertTrue(saved,"saved should be true");
 
         // THEN
-        List<UserData> listUsers = serviceCommand.findByName(name);
+        List<UserData>  listUsers = serviceCommand.findByName(name);
         assertNotNull(listUsers,"listUsers should not be null");
         assertTrue(listUsers.size()>0,"listUsers size should be greater than zero");
         assertTrue(listUsers.size()==1,"listUsers size should be only one");
@@ -61,25 +74,5 @@ public class ServiceFAKECommandHandlerTest {
         assertNotNull(userRecovered,"userRecovered should not be null");
         boolean isDeleted = serviceCommand.deleteFromDB(userRecovered.getIdUserData());
         assertTrue(isDeleted,"isDeleted should be true");
-
-        String message = "User " + userRecovered.getIdUserData() + " was deleted at " + LocalDate.now();
-        CommandMessage commandMessage = CommandMessage.builder()
-                .timestamp(System.currentTimeMillis())
-                .message(message)
-                .dateRegister(SopraUtils.getActualFormatedDate())
-                .name(userRecovered.getName())
-                .build();
-        // boolean pushedToTopic =eventStore.sendCommandMessage(commandMessage);
-        // assertTrue(pushedToTopic,"pushedToTopic should be true");
-
     }
-
-    @Test
-    private void listAll(){
-        List<UserData> list = serviceCommand.listAll();
-        assertNotNull(list,"list should not null");
-        assertTrue(list.size()>0,"list size should be greater than zero.");
-    }
-    */
-
 }
