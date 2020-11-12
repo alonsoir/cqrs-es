@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 @Configuration
 @ConfigurationProperties()
-@PropertySource({"classpath:application-command.properties"})
+@PropertySource({"classpath:application-query.properties"})
 //TODO no se porqué, pero no estoy cargando este properties, es como si al no encontrarlo, spring cargara un
 // application.properties por defecto y yo quiero poder cargar este application-command.properties...
 // confirmado, está cargando el application.properties que está en sopra-spring.
