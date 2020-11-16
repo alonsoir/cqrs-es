@@ -20,7 +20,7 @@ public class MessageProducer {
 
     @Autowired
     public MessageProducer(final KafkaTemplate<String, CommandMessage> kafkaCommandsTemplate) {
-        LOGGER.info("MessageProducer...");
+        LOGGER.info("Building MessageProducer instance from sopra-event-producer...");
         this.kafkaCommandsTemplate=kafkaCommandsTemplate;
     }
 

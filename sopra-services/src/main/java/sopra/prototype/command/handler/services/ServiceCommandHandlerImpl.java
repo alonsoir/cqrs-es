@@ -1,10 +1,17 @@
 package sopra.prototype.command.handler.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.util.concurrent.ListenableFuture;
 import sopra.prototype.command.services.ServiceCommand;
 import sopra.prototype.patterns.soprapatterns.observer.ServiceCommandObserver;
 import sopra.prototype.patterns.soprapatterns.status.CommandStatus;
+import sopra.prototype.soprakafka.service.MessageProducer;
 import sopra.prototype.vo.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,20 +24,25 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
-@ComponentScan("sopra.prototype.soprakafka.service")
-@ComponentScan("sopra.prototype.command.services")
+//@ComponentScan("sopra.prototype.soprakafka.service")
+//@ComponentScan("sopra.prototype.command.services")
 public class ServiceCommandHandlerImpl implements ServiceCommandHandler, ServiceCommandObserver {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCommandHandlerImpl.class);
 
-    private final ServiceCommand serviceCommand;
-    private final CommandServiceEventStore eventStore;
-
     @Autowired
-    public ServiceCommandHandlerImpl(ServiceCommand serviceCommand, CommandServiceEventStore eventStore) {
+    private ServiceCommand serviceCommand;
+    @Autowired
+    private MessageProducer messageProducer;
 
-        this.serviceCommand = serviceCommand;
-        this.eventStore = eventStore;
+    @Value(value = "${command.topic.name}")
+    private String topic;
+
+    public ServiceCommandHandlerImpl() {
+
+        LOGGER.info("---> BuildingServiceCommandHandlerImpl.");
+        //this.serviceCommand = serviceCommand;
+        //this.eventStore = eventStore;
     }
 
 
@@ -95,9 +107,13 @@ public class ServiceCommandHandlerImpl implements ServiceCommandHandler, Service
 
     public  boolean pushIntoEventStore(CommandMessage command) {
         LOGGER.info("ServiceCommandHandlerImpl.pushIntoEventStore, {}",command.toString());
-        boolean pushed = eventStore.sendCommandMessage(command);
-        LOGGER.info("ServiceCommandHandlerImpl.pushIntoEventStore, {} {}",command.toString(),pushed);
-        return pushed;
+        Message<CommandMessage> messageContained = MessageBuilder
+                .withPayload(command)
+                .setHeader(KafkaHeaders.TOPIC, topic)
+                .build();
+        ListenableFuture<SendResult<String, CommandMessage>> pushed = messageProducer.sendMessageToTopic(messageContained);
+        LOGGER.info("ServiceCommandHandlerImpl.pushIntoEventStore, {} {}",command.toString(),pushed.toString());
+        return pushed.isDone();
     }
 
     public void updateCommandStatus(CommandStatus status) {

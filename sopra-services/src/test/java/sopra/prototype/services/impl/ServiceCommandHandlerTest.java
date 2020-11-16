@@ -1,15 +1,26 @@
 package sopra.prototype.services.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import sopra.prototype.config.services.CommandHandlerConfig;
+import sopra.prototype.command.handler.services.ServiceCommandHandler;
+import sopra.prototype.config.services.CommandConfig;
+import sopra.prototype.services.impl.utils.SopraUtils;
+import sopra.prototype.soprakafka.config.Config;
+import sopra.prototype.vo.UserData;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // TODO no me está instanciando ServiceCommandHandler, de hecho, el test no me dice absolutamente nada.
 
-@SpringBootTest(classes={CommandHandlerConfig.class})
+@SpringBootTest(classes={CommandConfig.class,Config.class})
 @Slf4j
 public class ServiceCommandHandlerTest {
-/*
+
     @Autowired
     private ServiceCommandHandler serviceCommandHandler;
 
