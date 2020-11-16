@@ -76,8 +76,8 @@ public class QuickTests {
         boolean isSent = commandServiceEventStore.sendCommandMessage(message);
         assertTrue(isSent,"isSent should be true if message was sent.");
 
-        //boolean isReceived = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
-        //assertTrue(isReceived,"isReceived should be false because it will be true if the countdown is reached...");
+        boolean isReceived = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
+        assertTrue(isReceived,"isReceived should be false because it will be true if the countdown is reached...");
     }
 
     @Test
@@ -93,8 +93,8 @@ public class QuickTests {
         boolean isSent = commandServiceEventStore.sendCommandMessage(message);
         assertTrue(isSent,"isSent should be true if message was sent.");
 
-        //boolean isReceived = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
-        //assertTrue(isReceived,"isReceived should be false because it will be true if the countdown is reached...");
+        boolean isReceived = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
+        assertTrue(isReceived,"isReceived should be false because it will be true if the countdown is reached...");
     }
 
     @Test
@@ -113,8 +113,8 @@ public class QuickTests {
                 .build();
         ListenableFuture<SendResult<String, CommandMessage>> messageSent = messageProducer.sendMessageToTopic(messageContained);
         assertNotNull(messageSent);
-        //boolean isSent = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
-        //assertTrue(isSent,"should be false because it will be true if the countdown is reached...");
+        boolean isSent = this.listener.getLatch1().await(1, TimeUnit.SECONDS);
+        assertTrue(isSent,"should be false because it will be true if the countdown is reached...");
 
 
     }
