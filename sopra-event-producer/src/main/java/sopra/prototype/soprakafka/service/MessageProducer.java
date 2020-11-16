@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.messaging.Message;
 import org.springframework.util.concurrent.ListenableFuture;
 import sopra.prototype.soprakafka.model.CommandMessage;
 
@@ -17,21 +18,18 @@ public class MessageProducer {
 
     private final KafkaTemplate<String, CommandMessage> kafkaCommandsTemplate;
 
-    @Value(value = "${command.topic.name}")
-    private String topicName;
-
     @Autowired
     public MessageProducer(final KafkaTemplate<String, CommandMessage> kafkaCommandsTemplate) {
         LOGGER.info("MessageProducer...");
         this.kafkaCommandsTemplate=kafkaCommandsTemplate;
     }
 
-    public ListenableFuture<SendResult<String, CommandMessage>> sendMessageToTopic (CommandMessage message) {
+    public ListenableFuture<SendResult<String, CommandMessage>> sendMessageToTopic (Message<CommandMessage> message) {
         // TODO cambiar estos try catch por Try.of
         ListenableFuture<SendResult<String, CommandMessage>>  listenable =null;
         try {
-            LOGGER.info("Sending message {} to topicName {}",message.toString(),topicName);
-            listenable = kafkaCommandsTemplate.send(topicName,message);
+            LOGGER.info("Sending message {}",message.toString());
+            listenable = kafkaCommandsTemplate.send(message);
             LOGGER.info("listenable: " + listenable.toString());
         }catch (Exception e) {
             LOGGER.error("Something went wrong when sending entity to topic: " + e.getMessage());
