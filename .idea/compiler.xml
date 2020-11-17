@@ -9,7 +9,6 @@
         <module name="sopra-event-producer" />
         <module name="sopra-repositories" />
         <module name="sopra-query-services" />
-        <module name="sopra-event-consumer" />
         <module name="sopra-services" />
         <module name="sopra-controller" />
         <module name="sopra-patterns" />

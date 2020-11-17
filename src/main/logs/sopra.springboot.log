@@ -25,4 +25,58 @@
 ""2020-11-17 10:52:28 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
 ""2020-11-17 10:52:28 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll...
 ""2020-11-17 10:52:28 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll. 34
+""2020-11-17 12:47:08 [main] INFO  s.p.services.impl.ServiceQueryTest - Starting ServiceQueryTest on MacBook-Pro-de-Alonso.local with PID 14949 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
+""2020-11-17 12:47:08 [main] INFO  s.p.services.impl.ServiceQueryTest - The following profiles are active: dev
+""2020-11-17 12:47:09 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+""2020-11-17 12:47:09 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+""2020-11-17 12:47:09 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+""2020-11-17 12:47:09 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+""2020-11-17 12:47:10 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2020-11-17 12:47:10 [main] INFO  s.p.services.impl.ServiceQueryTest - Started ServiceQueryTest in 2.381 seconds (JVM running for 3.558)
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - saveOrUpdateIntoDB. sopra.prototype.vo.UserData@4137aab0
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - userSaved: sopra.prototype.vo.UserData@4137aab0
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - saveOrUpdateIntoDB. sopra.prototype.vo.UserData@47569167
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - userSaved: sopra.prototype.vo.UserData@47569167
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll...
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll. 47
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - delete. sopra.prototype.vo.UserData@26fadd98
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - saveOrUpdateIntoDB. sopra.prototype.vo.UserData@642c6461
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - userSaved: sopra.prototype.vo.UserData@642c6461
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll...
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll. 47
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - saveOrUpdateIntoDB. sopra.prototype.vo.UserData@69b3886f
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - userSaved: sopra.prototype.vo.UserData@69b3886f
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll...
+""2020-11-17 12:47:10 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll. 48
+""2020-11-17 12:58:31 [main] INFO  s.p.services.impl.ServiceQueryTest - Starting ServiceQueryTest on MacBook-Pro-de-Alonso.local with PID 15015 (started by aironman in /Users/aironman/gitProjects/sopra/challenge-ING/challengeing)
+""2020-11-17 12:58:31 [main] INFO  s.p.services.impl.ServiceQueryTest - The following profiles are active: dev
+""2020-11-17 12:58:32 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+""2020-11-17 12:58:32 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+""2020-11-17 12:58:32 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+""2020-11-17 12:58:32 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+""2020-11-17 12:58:33 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2020-11-17 12:58:33 [main] INFO  s.p.services.impl.ServiceQueryTest - Started ServiceQueryTest in 2.535 seconds (JVM running for 3.738)
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - saveOrUpdateIntoDB. sopra.prototype.vo.UserData@4137aab0
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - userSaved: sopra.prototype.vo.UserData@4137aab0
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - saveOrUpdateIntoDB. sopra.prototype.vo.UserData@42d9e8d2
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - userSaved: sopra.prototype.vo.UserData@42d9e8d2
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll...
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll. 57
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - delete. sopra.prototype.vo.UserData@120df990
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - saveOrUpdateIntoDB. sopra.prototype.vo.UserData@1a88c4f5
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - userSaved: sopra.prototype.vo.UserData@1a88c4f5
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll...
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll. 57
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - saveOrUpdateIntoDB. sopra.prototype.vo.UserData@935d3f9
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - userSaved: sopra.prototype.vo.UserData@935d3f9
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - isPresent?: false
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll...
+""2020-11-17 12:58:33 [main] INFO  s.p.services.bd.ServiceQueryImpl - listAll. 58
 "

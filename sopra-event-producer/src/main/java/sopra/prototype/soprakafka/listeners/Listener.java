@@ -12,6 +12,7 @@ import sopra.prototype.services.bd.ServiceQuery;
 import sopra.prototype.soprakafka.model.CommandMessage;
 import sopra.prototype.vo.UserData;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /***
@@ -44,13 +45,32 @@ public class Listener {
                    containerFactory = "kafkaListenerCommandContainerFactory")
     public void listenToCommands(@Payload CommandMessage commandMessage,@Headers MessageHeaders headers) {
 
-        // tengo acceso a la cabecera. es un mapa
-        logger.info("---> Listener.listenToCommands method. {} {}",commandMessage.toString(),headers.toString());
+        // tengo acceso a la cabecera. es un mapa. Podría usarlo para indicar la operacion a realizar?
+        // o tendría que embeber la intención en el payload?
+        boolean isUsersSavedIntoQueryCluster =false;
+                logger.info("---> Listener.listenToCommands method. {} {}",commandMessage.toString(),headers.toString());
         this.getLatch1().countDown();
+        String name = commandMessage.getName();
         UserData user = new UserData();
-        user.setName(commandMessage.getName());
+        user.setName(name);
         user.setDateRegister(commandMessage.getDateRegister());
-        boolean isUsersSavedIntoQueryCluster = serviceQuery.saveOrUpdateIntoDB(user);
+        boolean shouldCreateAdeleteOperation = commandMessage.getMessage().contains("DELETE");
+        logger.info("shouldCreateAdeleteOperation? {}",shouldCreateAdeleteOperation);
+        if (shouldCreateAdeleteOperation){
+            List<UserData> listUSers = serviceQuery.findByName(name);
+            logger.info("listUSers: {}",listUSers.size());
+
+            if (listUSers.size() > 0) {
+                UserData userTobeDeleted = listUSers.get(0);
+                logger.info("userTobeDeleted: {}",userTobeDeleted.toString());
+                user.setIdUserData(userTobeDeleted.getIdUserData());
+                serviceQuery.delete(user);
+                logger.info("--->deleted? {}", shouldCreateAdeleteOperation);
+            }
+        }else {
+            logger.info("user to be saved in QueryCluster: {}",user.toString());
+            isUsersSavedIntoQueryCluster = serviceQuery.saveOrUpdateIntoDB(user);
+        }
         logger.info("---> .isUsersSavedIntoQueryCluster? {}",isUsersSavedIntoQueryCluster);
 
     }

@@ -64,4 +64,12 @@ public class UserData {
 		this.dateRegister = dateRegister;
 	}
 
+	@Override
+	public String toString() {
+		return "UserData{" +
+				"idUserData=" + idUserData +
+				", name='" + name + '\'' +
+				", dateRegister='" + dateRegister + '\'' +
+				'}';
+	}
 }

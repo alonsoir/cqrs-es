@@ -26,8 +26,8 @@ import java.util.HashMap;
 // application-command.properties.
 @EnableJpaRepositories(
         basePackages = "sopra.prototype.repositories",
-        entityManagerFactoryRef = "userEntityManager",
-        transactionManagerRef = "userTransactionManager"
+        entityManagerFactoryRef = "userQueryEntityManager",
+        transactionManagerRef = "userQueryTransactionManager"
 )
 @ComponentScan("sopra.prototype.user.services")
 @ComponentScan("sopra.prototype.services.bd")
@@ -38,10 +38,10 @@ public class QueryConfig {
 
     @Bean
     @Primary
-    public LocalContainerEntityManagerFactoryBean userEntityManager() {
+    public LocalContainerEntityManagerFactoryBean userQueryEntityManager() {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(userDataSource());
+        em.setDataSource(userQueryDataSource());
         //"sopra.prototype.repositories"
         em.setPackagesToScan(new String[] { "sopra.prototype.vo","sopra.prototype.repositories"});
 
@@ -58,7 +58,7 @@ public class QueryConfig {
 
     @Primary
     @Bean
-    public DataSource userDataSource() {
+    public DataSource userQueryDataSource() {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
@@ -71,10 +71,10 @@ public class QueryConfig {
 
     @Primary
     @Bean
-    public PlatformTransactionManager userTransactionManager() {
+    public PlatformTransactionManager userQueryTransactionManager() {
 
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(userEntityManager().getObject());
+        transactionManager.setEntityManagerFactory(userQueryEntityManager().getObject());
         return transactionManager;
     }
 }

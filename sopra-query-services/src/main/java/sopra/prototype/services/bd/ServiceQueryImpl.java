@@ -29,14 +29,14 @@ public class ServiceQueryImpl extends ServiceQueryObservable implements ServiceQ
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceQueryImpl.class);
 
-    private final UserDataRepository userDataRepository;
+    private final UserDataRepository userQueryDataRepository;
     private QueryStatus currentStatus;
 
     @Autowired
-    public ServiceQueryImpl(UserDataRepository userDataRepository) {
+    public ServiceQueryImpl(UserDataRepository _userQueryDataRepository) {
         super();
         currentStatus = QueryStatus.Initialized;
-        this.userDataRepository = userDataRepository;
+        this.userQueryDataRepository = _userQueryDataRepository;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ServiceQueryImpl extends ServiceQueryObservable implements ServiceQ
         List<UserData> userDatas = new ArrayList<>();
         currentStatus = QueryStatus.Invoked;
         notifyObservers(currentStatus);
-        userDataRepository.findAll().forEach(userDatas::add);
+        userQueryDataRepository.findAll().forEach(userDatas::add);
         LOGGER.info("listAll. {}",userDatas.size());
         return userDatas;
     }
@@ -53,7 +53,7 @@ public class ServiceQueryImpl extends ServiceQueryObservable implements ServiceQ
     @Override
     public UserData getById(Integer id) {
         LOGGER.info("getById. {}",id);
-        UserData user = userDataRepository.findById(id).orElse(null);
+        UserData user = userQueryDataRepository.findById(id).orElse(null);
         currentStatus = QueryStatus.Invoked;
         notifyObservers(currentStatus);
         LOGGER.info("getById. {}",user.toString());
@@ -66,9 +66,9 @@ public class ServiceQueryImpl extends ServiceQueryObservable implements ServiceQ
     public boolean saveOrUpdateIntoDB(UserData user) {
         //TODO usar el Try.of para capturar la excepcion.
         LOGGER.info("saveOrUpdateIntoDB. {}",user.toString());
-        UserData userSaved = userDataRepository.save(user);
+        UserData userSaved = userQueryDataRepository.save(user);
         LOGGER.info("userSaved: " + userSaved.toString());
-        boolean isPresent = userDataRepository.existsById(user.getIdUserData());
+        boolean isPresent = userQueryDataRepository.existsById(user.getIdUserData());
         LOGGER.info("isPresent?: " + !isPresent);
         currentStatus = QueryStatus.SavedIntoDB;
         notifyObservers(currentStatus);
@@ -77,17 +77,19 @@ public class ServiceQueryImpl extends ServiceQueryObservable implements ServiceQ
 
     @Override
     @Transactional
-    public void delete(UserData user) {
+    public boolean delete(UserData user) {
         LOGGER.info("delete. {}",user.toString());
 
-        boolean isPresent=false;
-        userDataRepository.delete(user);
-        Optional<UserData> possibleUser = userDataRepository.findById(user.getIdUserData());
+        userQueryDataRepository.delete(user);
+        Optional<UserData> possibleUser = userQueryDataRepository.findById(user.getIdUserData());
+        boolean isPresent = possibleUser.isPresent();
+        LOGGER.info("deleted?. {}",!isPresent);
+        return !isPresent;
     }
 
     @Override
     public List<UserData> findByName(String name) {
 
-        return userDataRepository.findByName(name);
+        return userQueryDataRepository.findByName(name);
     }
 }

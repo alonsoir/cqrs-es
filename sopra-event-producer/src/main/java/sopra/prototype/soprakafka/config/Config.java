@@ -25,6 +25,12 @@ import sopra.prototype.soprakafka.service.MessageProducer;
 import java.util.HashMap;
 import java.util.Map;
 
+/***
+ * Configuracion tanto para el consumidor como el productor que usa Kafka.
+ * Está leyendo del fichero application.properties que está en sopra-spring.
+ * Tenlo en cuenta para cuando tengas que refactorizar o cambiar algo.
+ *
+ */
 @Configuration
 @EnableKafka
 public class Config {
@@ -41,6 +47,10 @@ public class Config {
 
     @Value(value = "${spring.kafka.producer.group-id}")
     private String groupId;
+
+    // ojito, que esto lo está leyendo de application-query.properties
+    @Value(value = "${spring.kafka.consumer.max.poll.interval.ms}")
+    private String maxConsumerInterval;
 
     @Bean
     public KafkaAdmin admin() {
@@ -125,26 +135,13 @@ public class Config {
         Map<String, Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, broker);
         config.put(ConsumerConfig.GROUP_ID_CONFIG,groupId);
+        config.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG,maxConsumerInterval);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
 
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), deserializer);
     }
 
-
-    @Bean
-    public Map<String, Object> consumerCommandConfigs() {
-
-        // public ConsumerFactory<String, Account> accountConsumerFactory()
-        Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, broker);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG,groupId);
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, BytesDeserializer.class.getName());
-        props.put(JsonDeserializer.TRUSTED_PACKAGES, "* ");
-
-        return props;
-    }
 
     @Bean
     public KafkaListenerContainerFactory<?> kafkaJsonListenerContainerFactory() {

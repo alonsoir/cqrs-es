@@ -2,6 +2,7 @@ package sopra.prototype.services.impl.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 /***
  * Esta clase contendrá métodos que he detectado que están repetidos.
@@ -14,5 +15,9 @@ public class SopraUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         String formattedString = localDate.format(formatter);
         return formattedString;
+    }
+
+    public static String getRandomUUID() {
+        return UUID.randomUUID().toString();
     }
 }

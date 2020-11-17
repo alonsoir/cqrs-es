@@ -10,6 +10,6 @@ public interface ServiceQuery extends ServiceQueryOnly {
 
     //Alguien tiene que guardar los datos en el cluster de lectura
     boolean saveOrUpdateIntoDB(UserData user);
-    void delete(UserData user);
+    boolean delete(UserData user);
 
 }

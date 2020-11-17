@@ -20,21 +20,22 @@ public class ServiceCommandImpl extends ServiceCommandObservable implements Serv
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCommandImpl.class);
 
-    private final UserDataRepository userDataRepository;
+    private final UserDataRepository userCommandDataRepository;
     private CommandStatus currentStatus;
 
     @Autowired
-    public ServiceCommandImpl(UserDataRepository _userDataRepository){
+    public ServiceCommandImpl(UserDataRepository _userCommandDataRepository){
         super();
         currentStatus = CommandStatus.Initialized;
-        userDataRepository = _userDataRepository;
+        notifyObservers(currentStatus);
+        userCommandDataRepository = _userCommandDataRepository;
     }
 
     @Override
     public boolean saveOrUpdateIntoDB(UserData user) {
-        UserData userSaved = userDataRepository.save(user);
+        UserData userSaved = userCommandDataRepository.save(user);
         LOGGER.info("userSaved: " + userSaved.toString());
-        boolean isPresent = userDataRepository.existsById(user.getIdUserData());
+        boolean isPresent = userCommandDataRepository.existsById(user.getIdUserData());
         LOGGER.info("isPresent?: " + !isPresent);
         currentStatus = CommandStatus.SavedIntoDB;
         notifyObservers(currentStatus);
@@ -43,8 +44,8 @@ public class ServiceCommandImpl extends ServiceCommandObservable implements Serv
 
     @Override
     public boolean deleteFromDB(Integer id) {
-        userDataRepository.deleteById(id);
-        boolean isDeleted = userDataRepository.existsById(id);
+        userCommandDataRepository.deleteById(id);
+        boolean isDeleted = userCommandDataRepository.existsById(id);
         LOGGER.info("isDeleted?: " + !isDeleted);
         currentStatus = CommandStatus.DeletedFromDB;
         notifyObservers(currentStatus);
@@ -53,12 +54,12 @@ public class ServiceCommandImpl extends ServiceCommandObservable implements Serv
 
     @Override
     public List<UserData> listAll() {
-        return userDataRepository.findAll();
+        return userCommandDataRepository.findAll();
     }
 
     @Override
     public List<UserData> findByName(String name) {
-        return userDataRepository.findByName(name);
+        return userCommandDataRepository.findByName(name);
     }
 
     public void observer(){

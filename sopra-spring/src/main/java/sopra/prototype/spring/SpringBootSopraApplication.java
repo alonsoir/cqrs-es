@@ -11,6 +11,11 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+// Puede que tengas que habilitar esto porque los dos servicios que interactuan con bd tienen que crear dos
+// UserDataRepository, aunque apunten a dos bases de datos distintas, spring entiende que tiene que
+// sobreescribir la definicion del bean.
+// https://stackoverflow.com/questions/53723303/springboot-beandefinitionoverrideexception-invalid-bean-definition
+// @SpringBootApplication (properties = "spring.main.allow-bean-definition-overriding=true")
 @SpringBootApplication(scanBasePackages = "es.sopra.prototype")
 @EntityScan(basePackages = "es.sopra.prototype")
 @EnableJpaRepositories(basePackages = "es.sopra.prototype")
