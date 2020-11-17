@@ -30,6 +30,7 @@ import java.util.HashMap;
         transactionManagerRef = "userTransactionManager"
 )
 @ComponentScan("sopra.prototype.user.services")
+@ComponentScan("sopra.prototype.services.bd")
 public class QueryConfig {
 
     @Autowired
@@ -61,9 +62,9 @@ public class QueryConfig {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
-        dataSource.setUrl(env.getProperty("spring.datasource.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.username"));
-        dataSource.setPassword(env.getProperty("spring.datasource.password"));
+        dataSource.setUrl(env.getProperty("spring.datasource.query.url"));
+        dataSource.setUsername(env.getProperty("spring.datasource.query.username"));
+        dataSource.setPassword(env.getProperty("spring.datasource.query.password"));
 
         return dataSource;
     }

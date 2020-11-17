@@ -1,5 +1,9 @@
 El proposito de este poc es poder crear un proyecto mínimo y viable para interactuar con un Event Store, en este caso 
 Kafka.
+
+Proyecto a desaparecer porque sopra-event-producer, futuro sopra-event-store tiene el código más actualizado sobre
+ como interactuar con Kafka.
+ 
 Debido a la naturaleza de como se consumen eventos usando spring-kafka, tengo que inyectar la dependencia para poder
  guardar en la base de datos de lecturas. En un mundo ideal, un método así podría devolver simplemente el evento
   consumido, pero esto no es así, de momento.

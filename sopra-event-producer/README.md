@@ -1,5 +1,7 @@
 El proposito de este poc es poder crear un proyecto mínimo y viable para interactuar con un Event Store, en este caso 
-Kafka.
+Kafka. Nació para tener la implementacion para interactuar con un productor, pero poco a poco tambien la del consumidor.
+
+Lo renombraré para ser sopra-event-store.
 
 Voy a usar la plataforma Confluent para tener en un mismo sitio Zookeeper y Kafka. Por comodidad, voy a usar Docker.
 # Prerequisitos 

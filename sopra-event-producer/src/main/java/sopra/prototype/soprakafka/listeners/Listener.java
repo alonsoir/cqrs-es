@@ -3,7 +3,6 @@ package sopra.prototype.soprakafka.listeners;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
@@ -12,6 +11,10 @@ import sopra.prototype.soprakafka.model.CommandMessage;
 
 import java.util.concurrent.CountDownLatch;
 
+/***
+ * Necesito que esta clase provea la manera de interactuar con la base de lecturas al recibir el CommandMessage.
+ * Tiene que ser así porque no hay otra manera, que yo conozca.
+ */
 @Slf4j
 public class Listener {
 

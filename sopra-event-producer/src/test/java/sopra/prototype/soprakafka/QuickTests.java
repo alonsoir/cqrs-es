@@ -58,6 +58,9 @@ public class QuickTests {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
+    // Actualmenente solo consigo poder instanciar MessageProducer y Listener para que puedan ser usados fuera de
+    // este contexto. No puedo usar CommandServiceEventStore, ni probablemente QueryServiceEventStore. Por ahora.
+    // Creo que si este proyecto estuviera compartiendo lugar con ServiceCommand y ServiceQuery, no habría problema.
     @Autowired
     private MessageProducer messageProducer;
 
