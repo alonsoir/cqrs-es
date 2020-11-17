@@ -1,11 +1,6 @@
 package sopra.prototype.services.bd;
 
-import org.apache.catalina.User;
-import org.springframework.data.repository.query.Param;
-import sopra.prototype.handler.services.ServiceQueryOnly;
 import sopra.prototype.vo.UserData;
-
-import java.util.List;
 
 /***
  * Para guardar y a la vez leer del cluster de lectura.

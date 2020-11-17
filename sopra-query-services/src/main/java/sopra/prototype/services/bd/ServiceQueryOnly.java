@@ -9,4 +9,6 @@ public interface ServiceQueryOnly {
     List<UserData> listAll();
 
     UserData getById(Integer id);
+
+    List<UserData> findByName(String name);
 }

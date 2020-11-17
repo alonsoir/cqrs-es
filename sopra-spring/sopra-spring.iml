@@ -51,6 +51,7 @@
     <orderEntry type="module" module-name="sopra-controller" />
     <orderEntry type="module" module-name="sopra-services" />
     <orderEntry type="module" module-name="sopra-event-producer" />
+    <orderEntry type="module" module-name="sopra-query-services" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-stream:3.0.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.integration:spring-integration-core:5.2.2.RELEASE" level="project" />

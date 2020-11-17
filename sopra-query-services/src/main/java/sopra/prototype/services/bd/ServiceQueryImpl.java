@@ -86,7 +86,7 @@ public class ServiceQueryImpl extends ServiceQueryObservable implements ServiceQ
     }
 
     @Override
-    public List<UserData>  findByName(String name) {
+    public List<UserData> findByName(String name) {
 
         return userDataRepository.findByName(name);
     }

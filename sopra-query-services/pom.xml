@@ -24,12 +24,13 @@
             <artifactId>sopra-repositories</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+<!-- Dependencia circular, por qué la puse?
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>sopra-spring</artifactId>
             <version>${project.version}</version>
         </dependency>
+-->
     </dependencies>
 
 </project>
