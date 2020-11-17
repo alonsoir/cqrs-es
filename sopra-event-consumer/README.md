@@ -1,6 +1,9 @@
 El proposito de este poc es poder crear un proyecto mínimo y viable para interactuar con un Event Store, en este caso 
 Kafka.
 
+Proyecto desactivado en el sopra-builder. Si no lo borro es porque a lo mejor quiero usar QueryServiceEventStore y su
+ implementació.
+ 
 Proyecto a desaparecer porque sopra-event-producer, futuro sopra-event-store tiene el código más actualizado sobre
  como interactuar con Kafka.
  
