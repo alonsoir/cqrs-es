@@ -1,0 +1,120 @@
+Tienes que enviar a esta direccion Registro.Jornada@soprasteria.com el fichero con las entradas al trabajo el viernes 30, antes de las 15:00
+
+	Plantilla Registro de Jornada SOPRA emergencia.xlsx PENDING!!
+
+Tienes que hacer varios cursos, pero el primero de prevención de riesgos laborales. Entregar a Sergio Monroy. OK!
+
+Tienes que entregar documento de autocomprobación del puesto a Borja. PENDING!
+
+Tienes que entregar el cv generado por la plataforma de sopra a Javi. OK, entregado.
+
+preguntar quienes son el manager operacional,el mentor y el assistant. OK 
+
+	Preguntar a borja o a gema, incluso a Sergio. Hay que tirar de ellos en el dia a dia.
+
+	Respuesta de Borja:
+
+		Manager Operacional es José Luís Ruíz y tu Mentor Abel Navarro. Presentarte a Jose Luis PENDING
+		Tu categoría interna de Sopra es IS- Solution Building N2A.
+	 
+		Aprovecho para recordarte, que salvo error por mi parte, te falta por enviarme el documento de autocomprobación del puesto completamente rellenado. PENDING!
+
+		Asistente(s)	NIETO HERNANDEZ Maria Jose, MARTI BODAS Silvia
+
+	Borja dice que es Lorena Grupeli. Saludarla 
+
+twitch.tv/Smartupconnect Ok, estás con tu usuario, MrNicTesla
+
+#Discords
+dojo-esports-SopraSteria PENDING
+
+Outlook? Pon la url https://outlook.office365.com
+
+click2learn? Pon la url https://soprasteria.csod.com/ui/lms-learner-home/home?tab_page_id=-200300006
+
+face2face? https://parici.soprasteria.com/dana/home/index.cgi
+
+Dominio:
+
+Emeaad
+
+email: 
+
+alonso.isidoro@soprasteria.com
+
+usuario/contraseña
+aisidoro/,`#!qK$h6t&U
+
+#TRELLO challenge ING
+
+alonso.isidoro@soprasteria.com/)5~+,Xpc*SR~
+
+https://trello.com/b/I103R7Xs/los-borbones-de-ing
+
+# DATOS PERSONALES en sopra. Para imputar las horas! IMPORTANTE
+https://mcp.soprahronline.com/SopraGP4U/WAW05BE0
+
+Actualmente estás imputando con el fichero Plantilla Registro de Jornada-semana-2-al-6-NOV .numbers
+
+Si hay que cambiar la contraseña:
+
+https://mypwd.soprasteria.com/
+
+Para ver mis datos en la empresa:
+
+https://myaccount.microsoft.com
+
+# IMPORTANTE!!
+	
+Pedir desde el primer dia en ING que nos monten el pipeline JENKINS
+
+Mirar como hacer un pipeline JENKINS
+	
+	https://www.jenkins.io/doc/tutorials/
+
+	https://codingpotions.com/jenkins-integracion-continua
+	
+
+Preguntar por Guillermo Gonzale Novelles.
+
+Diagramas
+
+	https://lucid.app/documents#/dashboard
+
+	alonso.isidoro@soprasteria.com//22VBjKmX"*j
+
+	buscar lucidchart 
+
+JIRA SOPRA
+
+https://constellation.soprasteria.com/cas/login?service=https%3A%2F%2Fconstellation.soprasteria.com%2Fconfluence2%2Fpages%2Fviewpage.action%3FspaceKey%3DSMARTUP%26title%3DChallenge%2BING
+
+
+correo electronico prevencion riesgos laborales prl@soprasteria.com
+
+Silvia Vélez 653 681 467
+
+Curriculum - BASICS OF SECURITY DONE!
+
+https://soprasteria.csod.com/phnx/driver.aspx?routename=Learning/Curriculum/CurriculumPlayer&TargetUser=93244&curriculumLoId=bd2b1635-16eb-4f4a-96e0-1aef30bb0ae7&referrerUrl=https%3a%2f%2fsoprasteria.csod.com%2fui%2flms-learning-details%2fapp%2fcurriculum%2fbd2b1635-16eb-4f4a-96e0-1aef30bb0ae7
+
+Abel te pide ésto:
+
+	Nombre: 
+	Apellidos:
+	DNI/NIF:
+	Si habéis solicitado/aceptado el reconocimiento medio que ofrece la empresa, el justificante/email de la cita. Si no el documento adjunto de renuncia al reconocimiento medico firmado.
+	Plantilla CAE firmada (documento adjunto)
+	CAE COVID-19 firmada (documento adjunto)
+	Registros de entrega de información firmado (documento adjunto)
+	Certificado de haber realizado el curso de PRL. Se puede exporta a pdf al finalizar el curso. Si no sabéis como hacer o tenéis algún problema os echo una mano.
+	 
+
+Tienes que crear el fichero ssh para poder clonar y subir al repo. Mejor hacerlo en el portatil de ING.
+
+https://innersource.soprasteria.com/help/ssh/README#generating-a-new-ssh-key-pair
+
+# PORTAL DEL EMPLEADO
+
+	https://mcp.soprahronline.com/SopraGP4U/
+

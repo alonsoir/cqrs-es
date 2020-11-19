@@ -1,0 +1,76 @@
+Situación actual de los tests de integración:
+
+## sopra-services:
+
+	ServiceCommandTest. OK
+	ServiceFAKECommandHandlerTest. OK
+	UserServiceTest. OK
+	ServiceCOmmandHandlerTest. KO INVESTIGAR u abandonar. La funcionalidad requerida está en ServiceFakeCommandHandlerTest. Why?... ABANDONADO. Me vale con lo que tengo.
+
+# Actualización 13 de Nov 2020 
+
+	Día horrible en el que no pude avanzar mucho y encima casi pierdo trabajo realizado despues de un sobreesfuerzo. NO LO HAGAS!
+
+# Actualización 16 de Nov 2020 16:48
+
+	ServiceFAKECommandHandlerTest ahora tiene inyectado ServiceCommand, MessageProducer y Listener. 
+	El primero se instancia en sopra-services, los dos siguientes se instancian en sopra-event-producer.
+	Ahora hay una mejor configuración, se instancia un ConsumerFactory que es capaz de procesar JSONs, en definitiva está mejor.
+
+	ServiceFAKECommandHandlerTest funciona bien, pero, al hacer lo mismo en ServiceCommandHandlerImpl, es decir, inyectarle ServiceCommand y Producer, spring no está instanciando
+	el handler. A este paso, no podré inyectarlo en la clase Controller, pero si tengo que hacerlo, lo haré.
+
+# Actualización 17 de Nov 2020 16:48
+
+	Añadida dependencia a sopra-event-store para que interactue con service-query-services. 
+	Finalmente he decidido que sopra-event-store sea el punto de reunion en la interaccion con kafka,
+	es decir, tanto el código para producir eventos, como para consumirlos. Habrá que renombrarlo a sopra-event-store, desactivar sopra-event-consumer de sopra-builder y borrarlo del repositorio.
+
+	Ahora el listener tiene a ServiceQuery para interactuar con el cluster de lectura.
+
+	Modificado el test unitario y de integracion QuickTests.java de sopra-event-producer para que haga uso tanto del producer como del listener.
+
+	El listener ahora detecta cuando hay que hacer un borrado en el query cluster. 
+
+	Tests en verde!
+
+
+## sopra-repositories:
+
+	No tiene tests. Se usa su funcionalidad en sopra-services sopra-query-services.
+
+## sopra-query-services:
+
+	UserDataServiceTest.java OK.  
+
+	Está consumiendo del topic? creo que le falta un test de integración, tal y como estoy haciendo en sopra-services.
+
+## sopra-patterns
+
+	SopraPatternsApplicationTests.java No hace nada. Debe hacerlo?
+
+## sopra-event-producer:
+
+	QuickTests.java OK. Refactorizado para que ahora use del properties! El test demuestra que ahora soy capaz de levantar CommandServiceEventStoreImpl. 
+	Antes no era capaz, creo. Al hacer esto, me he dado cuenta que hay un bug que ya sospechaba, relacionado con notificar al observador que el objeto
+	observable, CommandServiceEventStoreImpl, ha sido instanciado. Ojito!
+
+## sopra-event-consumer:
+
+	QuickTests.java KO. 
+
+	Suppressed: java.lang.IllegalStateException: Found multiple @SpringBootConfiguration annotated classes [Generic bean: class [sopra.prototype.soprakafka.SopraKafkaApplication]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [/Users/aironman/gitProjects/sopra/challenge-ING/challengeing/sopra-event-consumer/target/classes/sopra/prototype/soprakafka/SopraKafkaApplication.class], Generic bean: class [sopra.prototype.soprakafka.SpringBootProducerApplication]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [/Users/aironman/gitProjects/sopra/challenge-ING/challengeing/sopra-event-producer/target/classes/sopra/prototype/soprakafka/SpringBootProducerApplication.class]]
+
+	Fijarse en el sopra-event-producer, en la clase Config, en la clase Listener, en todo, de hecho, a día de hoy, creo que podría renombrar el proyecto sopra-event-producer a sopra-events y quitar este sopra-event-consumer porque todo lo necesario ya está hecho en sopra-event-producer. 
+	Creo que lo haré. 
+	REFACTORIZAR pom.xml en sopra-builder, BORRAR proyecto o desactivarlo.
+
+	DESACTIVADO!
+
+## sopra-spring
+
+	Crear test de integracion con métodos POST y get para que se pruebe la funcionalidad de sopra-query-services y sopra-services. PENDING
+
+
+
+

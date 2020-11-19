@@ -1,0 +1,219 @@
+Tienes que mirar ésto!! PENDING! IMPORTANTE!
+
+	https://www.vavr.io
+
+	https://github.com/vavr-io/vavr
+
+	https://gitter.im/vavr-io/vavr
+
+	#repo con ejemplos
+	https://github.com/armdev/vavr-in-action
+
+	# Sentencias MARIADB
+	https://brandominus.com/blog/creatividad/manual-sentencias-basicas-en-mysql/
+
+	https://mariadb.com/kb/en/create-database/
+
+REPOSITORIOS
+
+	https://innersource.soprasteria.com/smartup/ing/archetype-merak
+
+En ese repositorio hay varios proyectos, sobre todo hay que mirar el archetype-merak
+
+Hay que bajar, instalar y configurar MariaDB
+
+	brew install mariadb
+
+	# start MariaDB Server
+	mysql.server start
+
+	# or autostart it (optional if above dont apply)
+	brew services start mariadb
+
+	# 
+	mariadb-secure-installation
+
+	#log in as your user
+	mysql
+
+	#Or log in as root 
+	mysql -u root -p
+
+	#password is set as root
+
+	# upgrade mariadb, if you have to
+	brew update
+	brew upgrade mariadb
+
+==> Ojito! después de actualizar con brew update y upgrade, tengo ésto:
+
+==> mysql@5.7
+We've installed your MySQL database without a root password. To secure it run:
+    mysql_secure_installation
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run:
+    mysql -uroot
+
+Puede que tenga que ejecutar el script: 
+
+	mariadb_secure_installation
+
+Como se ejecuta archetype-merak?
+
+	# bd archetype_merak
+	use arqu_local;
+
+	use javistepa_banking;
+
+	show databases;
+
+	show tables;
+
+	SELECT * FROM clientes;
+
+
+Parece un arquetipo, no una aplicacion spring-boot...
+
+	Se tiene que lanzar el servidor mariaDB, luego lanzar el jar del proyecto sopra-spring.
+
+	Como se crea un proyecto partiendo desde un arquetipo?
+
+	mvn archetype:generate -DarchetypeGroupId=sopra.prototype -DarchetypeArtifactId=sopra-builder
+	
+
+Tienes que mirar Spring Cloud Stream. Para trabajar con kafka y rabbitMQ. PENDING
+
+Alvaro Navas es al que habría que preguntar sobre la infraestructura de ING. 
+
+También Oscar Soriano
+
+Para el tema de logging estamos usando logstash, elastic y kibana. ELK
+
+Para el tema de métricas, prometheus + grafana. 
+
+	https://prometheus.io 
+
+Tanto logstash como prometheus explota el concepto de bases de datos temporales. PENDING
+
+Estrategia para mergear con develop
+
+// guardo en stash mis cambios
+git stash
+
+git checkout develop
+
+git pull
+
+git checkout tu-rama
+
+git merge origin/develop
+
+// me traigo lo que tengo en stash
+git stash pop
+
+// arreglo posibles conflictos
+...
+
+git add .
+git commit -m "merging tu-rama with develop into tu-rama."
+git push origin tu-rama
+
+// tu rama está sincronizada con los cambios más actualizados en develop
+// alguien podría aceptar la pull request de tu rama en develop y no debería tener problemas para mergear.
+// si te toca hacerlo a tí.
+git checkout develop
+git pull
+git merge tu-rama
+git commit -m "updating develop branch with feature tu-rama"
+git push origin develop
+
+enlaces guapos
+
+	https://cloud.spring.io/spring-cloud-stream-binder-kafka/spring-cloud-stream-binder-kafka.html#_partitioning_with_the_kafka_binder
+
+	https://dzone.com/articles/spring-cloud-stream-with-kafka
+
+	https://dzone.com/articles/spring-reactive-microservices-a-showcase?edition=628303&utm_medium=email&utm_source=dzone&utm_content=Spring%20Reactive%20Microservices&utm_campaign=
+
+	https://dzone.com/articles/debugging-microservices-networking-issues-an-intro?edition=632293&utm_medium=email&utm_source=dzone&utm_content=Spring%20Reactive%20Microservices&utm_campaign=
+
+	# Para trabajar con Kafka y tener algo usable en forma de spring, mirar este articulo
+	https://dzone.com/articles/spring-cloud-stream-with-kafka
+	
+	# patron observer
+	https://github.com/iluwatar/java-design-patterns/tree/master/observer
+	
+	https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password
+
+	# trello para la formacion 
+	https://trello.com/challengeing/home
+
+	# documentacion del challenge. Si no abre, abrir el fichero Challenge ING.docx
+	https://steria-my.sharepoint.com/:w:/r/personal/fj_fernandez_soprasteria_com/_layouts/15/doc2.aspx?sourcedoc=%7B402E9574-6562-4476-A50A-19CD8CAC1561%7D&file=Challenge%20ING.docx&action=edit&mobileredirect=true
+
+	# vavr devoxx Poland. Para ver cuando puedas.
+	https://www.youtube.com/watch?v=2JTlFAjhL3U&feature=youtu.be&t=649
+
+	# vavr optional vs option
+	https://dzone.com/articles/using-java-optional-vs-vavr-option
+
+	#vavr IMPORTANTE
+	https://dzone.com/articles/be-more-functional-in-java-with-vavr
+
+	# Más vavr. IMPORTANTE
+	https://www.youtube.com/watch?v=EHpH5aV10Fo
+
+	http://chuwiki.chuidiang.org/index.php?title=Test_unitarios_con_Groovy_y_Spock
+
+	# Mañana te pones con este enlace a primera hora.
+	https://apiumhub.com/es/tech-blog-barcelona/java-con-vavr/
+
+	https://www.baeldung.com/vavr
+
+	#LOMBOK
+	https://objectcomputing.com/resources/publications/sett/january-2010-reducing-boilerplate-code-with-project-lombok
+
+	https://refactoring.guru/es/design-patterns/catalog
+
+	https://github.com/iluwatar/java-design-patterns
+
+	https://enmilocalfunciona.io
+
+	https://editor.swagger.io
+
+	https://javiervelezreyes.com/ni-nueva-ni-arquitectura-ni-hexagonal/
+
+	http://myprofile.smartup-program.es/cv
+
+	https://www.vavr.io
+
+	https://www.arquitecturajava.com/spring-qualifier-utilizando-autowired/
+
+	#curso de prevencion de riesgos laborales.
+	https://parici.soprasteria.com/,DanaInfo=lancyrisktrain01.ancy.fr.sopra,Port=8080+
+
+	https://smartup-xperience.slack.com/apps/category/At0EFRCDPW-file-management?utm_medium=in-prod&utm_source=in-prod&utm_campaign=d_in-prod_in-prod_all__welcome
+
+	#face2face
+	https://parici.soprasteria.com/Pages/,DanaInfo=portal.corp.soprasteria,SSL+default.aspx
+
+	https://parici.soprasteria.com/,DanaInfo=mysite.corp.soprasteria,SSL+person.aspx
+
+	https://www.yammer.com/embed-feed?config%5Buse_sso%5D=true&config%5Bheader%5D=false&config%5Bfooter%5D=false&config%5BshowOpenGraphPreview%5D=false&config%5BdefaultToCanonical%5D=false&config%5BhideNetworkName%5D=false&config%5BpromptText%5D=Start%20a%20conversation...&config%5Btheme%5D=light&container=%23embedded-feed&network=soprasteria.com&isStreamEmbed=false&network_permalink=soprasteria.com&bust=1602657302156&office365_auth_attempted=true
+
+	https://soprasteria.coorpacademy.com/dashboard
+
+	https://steria.sharepoint.com/sites/intra_all_group/SitePages/Outlook-Signature.aspx?CT=1602664209625&OR=OWA-NT&CID=37418177-2d9b-6c80-4907-767d31a7b660
+
+	https://innersource.soprasteria.com/smartup/ing/archetype-merak
+
+	https://enmilocalfunciona.io/por-que-utilizar-arquetipos-maven/
+
+	https://mariadb.com/kb/en/installing-mariadb-on-macos-using-homebrew/
+
+	https://mariadb.com/resources/blog/installing-mariadb-10-1-16-on-mac-os-x-with-homebrew/
+
+	https://gist.github.com/brandonsimpson/5204ce8a46f7a20071b5
+
