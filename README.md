@@ -1,10 +1,7 @@
-# Punto inicial, creado por Francisco Javier 
-# CQRS/ES, creado por Alonso Isidoro Román.
+# CQRS/ES.
+Un ejemplo sobre como usar el patrón CQRS/ES en java. Separar las escrituras y las lecturas que harías en un entorno distribuido escalable asíncrono, usando dos bases de datos distintas, en este ejemplo dos instancias MariaDB y un motor de streaming de eventos para transmitir cuando ocurre una escritura. La lectura se creará o se consumirá en su instancia de lecturas cuando se haya hecho commit en el cluster de escritura y en el motor de streaming. 
 
-# Disclaimer, 
-    este repositorio es privado, creado en el trabajo como preparación para SOPRA, con el fin de mantener una copia en caso de que el repositorio original o mi     máquina personal donde realicé el trabajo o la copia en el cloud apple asociado a mi cuenta desapareciera por error.
-
-    Ellos, SOPRA Steria ,son los propietarios de este repositorio, el código de la parte CQRS/ES fue creado por mí como dicha preparación. 
+Lo ideal sería tener contenedores docker al menos para separar la lógica escritura y de la lectura, así como tener otro contenedor para un broker kafka, así como Zookeeper. Idealmente habría que tener en cuenta que con esta implementación podría pasar que puede que consigamos escribir en la base de datos de escrituras, pero fracasemos al pushear el mensaje en el motor de eventos al estar no disponible, o que fracasemos a la hora de escribir en el base de datos de lectura una vez hemos consumido la agregación del motor de eventos. Esas situaciones hay que tenerlas en cuenta en una situación real. 
 
 ### PREREQUISITOS
 
@@ -12,6 +9,7 @@
     MariaDB
     JDK8
     Maven
+    
 # Como usar
 
     Levantar plataforma Confluent, normalmente la ip del broker será 0.0.0.0:9092. 
@@ -104,4 +102,5 @@
     Externalizar las properties en un spring-cloud-config.
     Pensar en algún mecanismo de paso de mensaje para emular el patrón Observer/Observable distribuido. 
     Añadir algún Controller para mostrar el funcionamiento más allá de un test de integración.
+    Añadir mayor robustez a la hora de controlar el commit distribuido entre los distintos subsistemas de bases de datos así como el motor de eventos.
     
