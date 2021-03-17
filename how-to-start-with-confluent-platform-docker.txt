@@ -5,6 +5,9 @@
 	git clone https://github.com/confluentinc/cp-all-in-one
 # /Users/aironman/gitProjects/
 	cd cp-all-in-one
+# Para saber cual es la rama actual, en el momento actual estaba la rama 6.0.0-post
+	git branch
+# Por si al bajar la rama, estas en master, tienes que cambiar a la rama más nueva, en este caso, 6.0.0-post
 	git checkout 6.0.0-post
 	cd cp-all-in-one
 	docker-compose up -d
